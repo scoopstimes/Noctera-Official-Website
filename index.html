@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Noctera — Modern Music & AI Experience</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Ambient Background Lighting -->
+    <div class="ambient-glow glow-top"></div>
+    <div class="ambient-glow glow-middle"></div>
+
+    <!-- HEADER / NAVIGATION -->
+    <header class="navbar" id="navbar">
+        <div class="container nav-wrapper">
+            <!-- Brand Logo -->
+            <a href="#" class="brand">
+                <div class="brand-logo">
+                    <img src="logo.jpg" alt="Noctera Logo">
+                </div>
+                <span class="brand-name">NOCTERA</span>
+            </a>
+
+            <!-- Menu Navigation -->
+            <nav class="nav-menu" id="navMenu">
+                <a href="#features" class="nav-link">Fitur</a>
+                <a href="#lica-ai" class="nav-link">Lica AI <span class="mini-badge">Beta</span></a>
+                <a href="#preview" class="nav-link">Tampilan</a>
+                <a href="#collaborative" class="nav-link">Kolaborasi</a>
+                
+                <div class="mobile-cta-wrapper">
+                    <a href="#download" class="btn-primary-glow btn-full">
+                        <i class="fa-brands fa-google-play"></i> Unduh App
+                    </a>
+                </div>
+            </nav>
+
+            <!-- Actions & Mobile Hamburger -->
+            <div class="nav-actions">
+                <a href="#download" class="btn-primary-glow desktop-only">
+                    <span>Unduh App</span>
+                    <i class="fa-solid fa-arrow-down-long"></i>
+                </a>
+                
+                <button class="menu-toggle" id="menuToggle" aria-label="Toggle Menu">
+                    <i class="fa-solid fa-bars-staggered icon-open"></i>
+                    <i class="fa-solid fa-xmark icon-close"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero-section">
+        <div class="container hero-grid">
+            <div class="hero-text">
+                <div class="badge-tag">
+                    <i class="fa-solid fa-sparkles"></i>
+                    <span>Next-Gen Music Experience</span>
+                </div>
+                
+                <h1 class="hero-heading">
+                    Harmoni Musik Tanpa Batas Ruang, <span class="gradient-text">Ciptakan Bersama.</span>
+                </h1>
+                
+                <p class="hero-subtext">
+                    Nikmati audio resolusi tinggi, playlist kolaboratif real-time, dan kecerdasan <strong>Lica AI</strong> yang memahami suasana hatimu secara personal.
+                </p>
+
+                <div class="hero-actions">
+                    <a href="https://play.google.com/store/apps/details?id=com.adhikaryainv.voxa" target="_blank" class="btn-store">
+                        <i class="fa-brands fa-google-play"></i>
+                        <div class="store-text">
+                            <small>GET IT ON</small>
+                            <span>Google Play</span>
+                        </div>
+                    </a>
+                    
+                    <a href="#preview" class="btn-glass">
+                        <i class="fa-solid fa-circle-play"></i>
+                        <span>Lihat Demo</span>
+                    </a>
+                </div>
+
+                <div class="hero-metrics">
+                    <div class="metric-card">
+                        <span class="metric-value">1.000+</span>
+                        <span class="metric-label">Download</span>
+                    </div>
+                    <div class="metric-divider"></div>
+                    <div class="metric-card">
+                        <span class="metric-value">4.9★</span>
+                        <span class="metric-label">Rating</span>
+                    </div>
+                    <div class="metric-divider"></div>
+                    <div class="metric-card">
+                        <span class="metric-value">Real-Time</span>
+                        <span class="metric-label">Sync Playlist</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-visual">
+                <div class="phone-wrapper">
+                    <div class="phone-frame">
+                        <img src="licaAI.jpg" alt="Noctera App Interface" class="app-screenshot">
+                    </div>
+
+                    <!-- Floating Card Left -->
+                    <div class="float-card float-left">
+                        <img src="art-raimlaode.jpg" alt="Art Cover" class="float-art">
+                        <div class="float-info">
+                            <span class="float-title">Dunia Yang Nanti</span>
+                            <span class="float-sub">Raim Laode</span>
+                        </div>
+                        <i class="fa-solid fa-heart active-heart"></i>
+                    </div>
+
+                    <!-- Floating Card Right -->
+                    <div class="float-card float-right">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+                        <span>Lica AI Active</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FEATURES SECTION -->
+    <section class="features-section" id="features">
+        <div class="container">
+            <div class="section-title-box text-center">
+                <span class="section-tag">FITUR UNGGULAN</span>
+                <h2 class="section-heading">Pengalaman Musik Lengkap Tanpa Batas</h2>
+            </div>
+
+            <div class="features-grid">
+                <!-- Card 1: Playlist Kolaboratif -->
+                <div class="feature-card" id="collaborative">
+                    <div class="card-icon-box">
+                        <i class="fa-solid fa-users-rays"></i>
+                    </div>
+                    <h3>Playlist Kolaboratif</h3>
+                    <p>Undang teman untuk menambah, menyusun, dan mendengarkan trek musik bersama secara fleksibel kapan pun kamu mau.</p>
+                </div>
+
+                <!-- Card 2: Lica AI Highlight -->
+                <div class="feature-card card-highlight" id="lica-ai">
+                    <span class="card-badge">Powered By Neuxon AI</span>
+                    <div class="card-icon-box">
+                        <i class="fa-solid fa-brain"></i>
+                    </div>
+                    <h3>Lica AI Assistant</h3>
+                    <p>Pelajari arti lirik, cari fakta menarik seputar artis favorit, atau minta playlist unik berdasarkan mood kamu saat ini.</p>
+                </div>
+
+                <!-- Card 3: Katalog Lengkap -->
+                <div class="feature-card">
+                    <div class="card-icon-box">
+                        <i class="fa-solid fa-compact-disc"></i>
+                    </div>
+                    <h3>Lagu & Album Lengkap</h3>
+                    <p>Akses jutaan diskografi album, rilisan tunggal (single), hingga trek langka dari berbagai musisi lokal dan internasional.</p>
+                </div>
+
+                <!-- Card 4: Download & Lirik Offline -->
+                <div class="feature-card">
+                    <div class="card-icon-box">
+                        <i class="fa-solid fa-circle-down"></i>
+                    </div>
+                    <h3>Unduh & Lirik Offline</h3>
+                    <p>Simpan lagu favorit dan lirik lengkapnya langsung ke perangkat. Tetap bisa bernyanyi dan dengerin musik tanpa koneksi internet.</p>
+                </div>
+
+                <!-- Card 5: Upload Lagu & Lirik Mandiri -->
+                <div class="feature-card">
+                    <div class="card-icon-box">
+                        <i class="fa-solid fa-cloud-arrow-up"></i>
+                    </div>
+                    <h3>Upload Lagu & Lirik</h3>
+                    <p>Punya koleksi file audio atau lirik sendiri? Upload dengan mudah untuk diputar secara offline maupun disinkronkan ke pemutar.</p>
+                </div>
+
+                <!-- Card 6: Audio Lossless -->
+                <div class="feature-card">
+                    <div class="card-icon-box">
+                        <i class="fa-solid fa-sliders"></i>
+                    </div>
+                    <h3>Audio Lossless HD</h3>
+                    <p>Sajikan musik beresolusi tinggi dengan reproduksi frekuensi yang tajam dan dentuman bass yang kaya.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALLERY SCREENSHOT SHOWCASE -->
+    <section class="gallery-section" id="preview">
+        <div class="container">
+            <div class="section-title-box">
+                <span class="section-tag">TAMPILAN APLIKASI</span>
+                <h2 class="section-heading">Desain Antarmuka yang Elegan</h2>
+            </div>
+        </div>
+
+        <div class="gallery-slider">
+            <div class="gallery-track">
+                <div class="gallery-item"><img src="home.jpg" alt="Home Screen"></div>
+                <div class="gallery-item"><img src="player.jpg" alt="Music Player"></div>
+                <div class="gallery-item"><img src="lirik.jpg" alt="lirik songs"></div>
+                <div class="gallery-item"><img src="options.jpg" alt="Song Options"></div>
+                <div class="gallery-item"><img src="artist.jpg" alt="Artist Profile"></div>
+                <div class="gallery-item"><img src="album.jpg" alt="album songs"></div>
+                <div class="gallery-item"><img src="licaAI.jpg" alt="Lica AI Analysis"></div>
+                <div class="gallery-item"><img src="licaAI-Generative.jpg" alt="Lica AI Generative"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DOWNLOAD / CTA SECTION -->
+    <section class="cta-section" id="download">
+        <div class="container">
+            <div class="cta-card">
+                <div class="cta-body">
+                    <img src="logo.jpg" alt="Noctera Logo" class="cta-logo">
+                    <h2>Unduh Noctera Sekarang</h2>
+                    <p>Rasakan era baru dalam mendengarkan musik. Gratis dan dapatkan kemudahan mengelola playlist favoritmu hari ini.</p>
+                    
+                    <a href="https://play.google.com/store/apps/details?id=com.adhikaryainv.voxa" target="_blank" class="btn-store btn-store-large">
+                        <i class="fa-brands fa-google-play"></i>
+                        <div class="store-text">
+                            <small>AVAILABLE ON GOOGLE PLAY</small>
+                            <span>Download Noctera App</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container footer-grid">
+            <div class="footer-brand-info">
+                <div class="brand">
+                    <div class="brand-logo">
+                        <img src="logo.jpg" alt="Noctera Logo">
+                    </div>
+                    <span class="brand-name">NOCTERA</span>
+                </div>
+                <p>Platform pemutar musik modern dengan integrasi AI cerdas dan kolaborasi playlist tanpa hambatan.</p>
+            </div>
+
+            <div class="footer-navigation">
+                <div class="footer-col">
+                    <h4>Navigasi</h4>
+                    <a href="#features">Fitur</a>
+                    <a href="#lica-ai">Lica AI</a>
+                    <a href="#download">Unduh</a>
+                </div>
+<div class="footer-col">
+    <h4>Kebijakan</h4>
+    <a href="privacy-terms.html#privacy">Privasi</a>
+    <a href="privacy-terms.html#terms">Syarat & Ketentuan</a>
+    <a href="mailto:adhikaryainnovations.media@gmail.com?subject=Bantuan%20Aplikasi%20Noctera">Pusat Bantuan</a>
+</div>
+
+            </div>
+        </div>
+
+        <div class="container footer-bottom">
+            <p>&copy; 2026 Noctera Music. All rights reserved.</p>
+            <div class="social-links">
+                <a href="https://www.instagram.com/noctera_app?igsh=MTNxYmR5ZTd6Z2Zqdw==" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
