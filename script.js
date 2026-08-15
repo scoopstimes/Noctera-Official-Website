@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // 1. Scroll Effect Header (Glass Effect saat di-scroll)
     const navbar = document.getElementById('navbar');
     window.addEventListener('scroll', () => {
         if (window.scrollY > 20) {
@@ -10,7 +9,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // 2. Mobile Hamburger Menu Toggle
     const menuToggle = document.getElementById('menuToggle');
     const navMenu = document.getElementById('navMenu');
     const iconOpen = menuToggle.querySelector('.icon-open');
@@ -22,17 +20,16 @@ document.addEventListener('DOMContentLoaded', () => {
         if (isOpen) {
             iconOpen.style.display = 'none';
             iconClose.style.display = 'inline-block';
-            document.documentElement.style.overflow = 'hidden'; // Kunci scroll halaman belakang
+            document.documentElement.style.overflow = 'hidden'; 
         } else {
             iconOpen.style.display = 'inline-block';
             iconClose.style.display = 'none';
-            document.documentElement.style.overflow = 'auto'; // Buka scroll halaman
+            document.documentElement.style.overflow = 'auto'; 
         }
     }
 
     menuToggle.addEventListener('click', toggleMenu);
-
-    // Otomatis Tutup Menu saat Salah Satu Navigasi Diklik
+    
     document.querySelectorAll('.nav-link, .mobile-cta-wrapper a').forEach(link => {
         link.addEventListener('click', () => {
             if (navMenu.classList.contains('active')) {
@@ -40,8 +37,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
-
-    // 3. Smooth Scroll Navigation saat Menu Diklik
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
