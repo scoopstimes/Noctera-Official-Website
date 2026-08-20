@@ -474,7 +474,7 @@ html, body {
 }
 
 /* ==========================================================================
-   PROJECT SECTIONS & NOCTERA CUSTOM STYLES
+   PROJECT SECTIONS & ACCORDION CUSTOM STYLES
    ========================================================================== */
 .projects-section {
     padding: 60px 0 100px 0;
@@ -517,7 +517,6 @@ html, body {
     border-color: rgba(168, 85, 247, 0.3);
 }
 
-/* Noctera Purple Theme Adjustments */
 .noctera-block {
     border-color: rgba(168, 85, 247, 0.25) !important;
 }
@@ -540,38 +539,81 @@ html, body {
     background: var(--purple-bright) !important;
 }
 
-.text-gradient-noctera {
-    background: linear-gradient(135deg, #C084FC 30%, #34D399 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-.app-header {
+.compact-app-card {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 16px;
-    margin-bottom: 16px;
+    text-align: center;
 }
 
 .app-brand-logo {
-    width: 52px;
-    height: 52px;
-    border-radius: 14px;
+    border-radius: 18px;
     object-fit: cover;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-}
-
-.app-header h3 {
-    font-family: var(--font-heading);
-    font-size: 1.6rem;
-    font-weight: 700;
 }
 
 .app-description {
     color: var(--text-muted);
     font-size: 0.98rem;
-    margin-bottom: 30px;
-    max-width: 800px;
+    max-width: 700px;
+}
+
+.app-main-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+/* Styling Dropdown Detail & Accordion */
+.details-toggle-btn {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: var(--text-muted);
+    padding: 12px 22px;
+    border-radius: 16px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+}
+
+.details-toggle-btn:hover {
+    color: #fff;
+    border-color: var(--green-light);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.noctera-block .details-toggle-btn:hover {
+    border-color: var(--purple-light);
+}
+
+.details-toggle-btn i {
+    transition: transform 0.3s ease;
+}
+
+.details-toggle-btn.active i {
+    transform: rotate(180deg);
+}
+
+.collapsible-content {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.5s ease, opacity 0.4s ease;
+}
+
+.collapsible-content.show {
+    max-height: 2000px;
+    opacity: 1;
+    margin-top: 25px;
+    padding-top: 25px;
+    border-top: 1px dashed rgba(255, 255, 255, 0.1);
 }
 
 .features-grid {
@@ -579,6 +621,7 @@ html, body {
     grid-template-columns: repeat(4, 1fr);
     gap: 20px;
     margin-bottom: 35px;
+    text-align: left;
 }
 
 .feature-card {
@@ -677,16 +720,6 @@ html, body {
 .gallery-item img {
     width: 100%;
     display: block;
-}
-
-.app-action-box {
-    margin-top: 30px;
-    display: flex;
-    justify-content: center;
-}
-
-.btn-inline {
-    display: inline-flex;
 }
 
 /* ==========================================================================
@@ -1007,133 +1040,146 @@ html, body {
 
             <!-- APP 1: NOCTERA -->
             <div class="app-block noctera-block" id="noctera">
-                <div class="app-header">
-                    <img src="logonoc.jpg" alt="Noctera Logo" class="app-brand-logo">
-                    <div>
-                        <span class="mini-badge">Music & AI Platform</span>
-                        <h3>Noctera — <span class="text-gradient-noctera">Modern Music & AI Experience</span></h3>
-                    </div>
-                </div>
-                <p class="app-description">
-                    Pemutar musik generasi baru dengan integrasi <strong>Lica AI (Powered by Neuxon AI)</strong>. Menawarkan audio resolusi tinggi, kolaborasi playlist real-time, sinkronisasi lirik, serta fitur pengelolaan lagu mandiri.
-                </p>
+                <div class="compact-app-card">
+                    <img src="logonoc.jpg" alt="Noctera Logo" class="app-brand-logo" style="width: 72px; height: 72px; margin-bottom: 12px;">
+                    <span class="mini-badge" style="margin-bottom: 8px;">Music & AI Platform</span>
+                    <h3 style="font-family: var(--font-heading); font-size: 1.8rem;">Noctera</h3>
+                    <p class="app-description" style="margin-bottom: 15px;">
+                        Pemutar musik generasi baru berfitur audio lossless, lirik otomatis, dan asisten **Lica AI**.
+                    </p>
 
-                <div class="features-grid">
-                    <div class="feature-card feature-card-purple card-highlight">
-                        <div class="card-icon-box card-icon-purple"><i class="fa-solid fa-brain"></i></div>
-                        <h3>Lica AI Assistant</h3>
-                        <p>Pelajari makna lirik, analisis mood lagu, dan dapatkan rekomendasi musik personal dari kecerdasan buatan.</p>
-                    </div>
-                    <div class="feature-card feature-card-purple">
-                        <div class="card-icon-box card-icon-purple"><i class="fa-solid fa-users-rays"></i></div>
-                        <h3>Playlist Kolaboratif</h3>
-                        <p>Susun, dengarkan, dan kelola daftar lagu favorit bersama teman-temanmu secara real-time.</p>
-                    </div>
-                    <div class="feature-card feature-card-purple">
-                        <div class="card-icon-box card-icon-purple"><i class="fa-solid fa-sliders"></i></div>
-                        <h3>Audio Lossless HD</h3>
-                        <p>Nikmati kualitas audio resolusi tinggi dengan kejernihan frekuensi suara dan dentuman bass yang kaya.</p>
-                    </div>
-                    <div class="feature-card feature-card-purple">
-                        <div class="card-icon-box card-icon-purple"><i class="fa-solid fa-cloud-arrow-up"></i></div>
-                        <h3>Upload & Offline Mode</h3>
-                        <p>Unggah file audio serta lirik sendiri, dan dengarkan lagu favoritmu kapan saja tanpa koneksi internet.</p>
+                    <!-- Tombol Unduh & Tombol Dropdown -->
+                    <div class="app-main-actions">
+                        <a href="https://play.google.com/store/apps/details?id=com.adhikaryainv.voxa" target="_blank" class="btn-store">
+                            <i class="fa-brands fa-google-play fa-xl"></i>
+                            <div class="store-text">
+                                <small>GET IT ON</small>
+                                <span>Google Play</span>
+                            </div>
+                        </a>
+
+                        <button class="details-toggle-btn" onclick="toggleDetails(this, 'noctera-details')">
+                            <span>Detail Fitur & Screenshot</span>
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </button>
                     </div>
                 </div>
 
-                <div class="gallery-slider">
-                    <div class="gallery-track gallery-track-purple">
-                        <div class="gallery-item"><img src="home.jpg" alt="Noctera Home Screen"></div>
-                        <div class="gallery-item"><img src="options.jpg" alt="Noctera Music Player"></div>
-                        <div class="gallery-item"><img src="lirik.jpg" alt="Noctera Lyrics Screen"></div>
-                        <div class="gallery-item"><img src="licaAI.jpg" alt="Lica AI Analysis"></div>
-                        <div class="gallery-item"><img src="licaAI-Generative.jpg" alt="Lica AI Generative"></div>
-                    </div>
-                </div>
-
-                <div class="app-action-box text-center">
-                    <a href="https://play.google.com/store/apps/details?id=com.adhikaryainv.voxa" target="_blank" class="btn-store btn-inline">
-                        <i class="fa-brands fa-google-play fa-2x"></i>
-                        <div class="store-text">
-                            <small>AVAILABLE ON</small>
-                            <span>Google Play Store</span>
+                <!-- Konten Dropdown (Fitur & SS) -->
+                <div class="collapsible-content" id="noctera-details">
+                    <div class="features-grid">
+                        <div class="feature-card feature-card-purple card-highlight">
+                            <div class="card-icon-box card-icon-purple"><i class="fa-solid fa-brain"></i></div>
+                            <h3>Lica AI Assistant</h3>
+                            <p>Pelajari makna lirik, analisis mood lagu, dan dapatkan rekomendasi musik personal.</p>
                         </div>
-                    </a>
+                        <div class="feature-card feature-card-purple">
+                            <div class="card-icon-box card-icon-purple"><i class="fa-solid fa-users-rays"></i></div>
+                            <h3>Playlist Kolaboratif</h3>
+                            <p>Dengarkan dan kelola daftar lagu favorit bersama teman secara real-time.</p>
+                        </div>
+                        <div class="feature-card feature-card-purple">
+                            <div class="card-icon-box card-icon-purple"><i class="fa-solid fa-sliders"></i></div>
+                            <h3>Audio Lossless HD</h3>
+                            <p>Kualitas audio resolusi tinggi dengan kejernihan frekuensi suara yang kaya.</p>
+                        </div>
+                        <div class="feature-card feature-card-purple">
+                            <div class="card-icon-box card-icon-purple"><i class="fa-solid fa-cloud-arrow-up"></i></div>
+                            <h3>Upload & Offline</h3>
+                            <p>Unggah file audio serta lirik sendiri, dengarkan kapan saja tanpa internet.</p>
+                        </div>
+                    </div>
+
+                    <div class="gallery-slider">
+                        <div class="gallery-track gallery-track-purple">
+                            <div class="gallery-item"><img src="home.jpg" alt="Noctera Home Screen"></div>
+                            <div class="gallery-item"><img src="options.jpg" alt="Noctera Player"></div>
+                            <div class="gallery-item"><img src="lirik.jpg" alt="Noctera Lyrics"></div>
+                            <div class="gallery-item"><img src="licaAI.jpg" alt="Lica AI Analysis"></div>
+                            <div class="gallery-item"><img src="licaAI-Generative.jpg" alt="Lica AI Generative"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
             <!-- APP 2: QURANIC -->
             <div class="app-block" id="quranic">
-                <div class="app-header">
-                    <img src="logoquranic.jpg" alt="Quranic Logo" class="app-brand-logo">
-                    <div>
-                        <span class="mini-badge badge-green">Islamic</span>
-                        <h3>Quranic — Listen Quran</h3>
-                    </div>
-                </div>
-                <p class="app-description">
-                    Aplikasi Al-Qur'an digital modern yang dirancang untuk memberikan pengalaman membaca, mempelajari, dan merenungkan ayat-ayat suci Al-Qur'an secara nyaman, cepat, dan intuitif.
-                </p>
+                <div class="compact-app-card">
+                    <img src="logoquranic.jpg" alt="Quranic Logo" class="app-brand-logo" style="width: 72px; height: 72px; margin-bottom: 12px;">
+                    <span class="mini-badge badge-green" style="margin-bottom: 8px;">Islamic App</span>
+                    <h3 style="font-family: var(--font-heading); font-size: 1.8rem;">Quranic</h3>
+                    <p class="app-description" style="margin-bottom: 15px;">
+                        Aplikasi Al-Qur'an digital modern untuk membaca, mendengarkan murottal, dan merenungkan ayat suci.
+                    </p>
 
-                <div class="features-grid">
-                    <div class="feature-card">
-                        <div class="card-icon-box"><i class="fa-solid fa-book-quran"></i></div>
-                        <h3>Teks Digital & Terjemahan</h3>
-                        <p>Akses mushaf Al-Qur'an lengkap beserta terjemahan bahasa Indonesia yang jelas dan akurat.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="card-icon-box"><i class="fa-solid fa-headphones"></i></div>
-                        <h3>Audio Murottal</h3>
-                        <p>Dengarkan lantunan ayat suci dari berbagai Qari populer dengan kualitas audio yang jernih.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="card-icon-box"><i class="fa-solid fa-magnifying-glass text-green"></i></div>
-                        <h3>Pencarian Ayat Cepat</h3>
-                        <p>Temukan surat, ayat, atau topik tertentu dalam Al-Qur'an dengan sistem pencarian instan.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="card-icon-box"><i class="fa-solid fa-bookmark"></i></div>
-                        <h3>Penanda & Catatan</h3>
-                        <p>Simpan ayat favorit dan berikan penanda bacaan terakhir untuk mempermudah tilawah harian.</p>
+                    <!-- Tombol Unduh & Tombol Dropdown -->
+                    <div class="app-main-actions">
+                        <a href="quranic.apk" download class="btn-store btn-store-green">
+                            <i class="fa-solid fa-download fa-xl"></i>
+                            <div class="store-text">
+                                <small>DIRECT DOWNLOAD</small>
+                                <span>Download APK</span>
+                            </div>
+                        </a>
+
+                        <button class="details-toggle-btn" onclick="toggleDetails(this, 'quranic-details')">
+                            <span>Detail Fitur & Screenshot</span>
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </button>
                     </div>
                 </div>
 
-                <div class="gallery-slider">
-                    <div class="gallery-track">
-                        <div class="gallery-item"><img src="quranichome.jpg" alt="Quranic Home Screen"></div>
-                        <div class="gallery-item"><img src="playerquranic.jpg" alt="Quranic Player Screen"></div>
-                        <div class="gallery-item"><img src="qarireplace.jpg" alt="Quranic Qari Replace"></div>
-                        <div class="gallery-item"><img src="qarilist.jpg" alt="Quranic Qari List"></div>
-                        <div class="gallery-item"><img src="surahreplace.jpg" alt="Quranic Surah Replace"></div>
-                        <div class="gallery-item"><img src="doalist.jpg" alt="Quranic Doa List"></div>
-                        <div class="gallery-item"><img src="library.jpg" alt="Quranic Library"></div>
-                        <div class="gallery-item"><img src="ambientsound.jpg" alt="Quranic Ambient Sound"></div>
-                        <div class="gallery-item"><img src="settings.jpg" alt="Quranic Settings"></div>
-                        <div class="gallery-item"><img src="doadetail.jpg" alt="Quranic Doa Detail"></div>
-                    </div>
-                </div>
-
-                <!-- TOMBOL DOWNLOAD APK QURANIC -->
-                <div class="app-action-box text-center">
-                    <a href="quranic.apk" download class="btn-store btn-store-green btn-inline">
-                        <i class="fa-solid fa-download fa-2x"></i>
-                        <div class="store-text">
-                            <small>DIRECT DOWNLOAD</small>
-                            <span>Download APK (Quranic)</span>
+                <!-- Konten Dropdown (Fitur & SS) -->
+                <div class="collapsible-content" id="quranic-details">
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <div class="card-icon-box"><i class="fa-solid fa-book-quran"></i></div>
+                            <h3>Teks & Terjemahan</h3>
+                            <p>Mushaf Al-Qur'an lengkap beserta terjemahan Indonesia yang jelas dan akurat.</p>
                         </div>
-                    </a>
+                        <div class="feature-card">
+                            <div class="card-icon-box"><i class="fa-solid fa-headphones"></i></div>
+                            <h3>Audio Murottal</h3>
+                            <p>Lantunan ayat suci dari berbagai Qari populer dengan audio jernih.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="card-icon-box"><i class="fa-solid fa-magnifying-glass text-green"></i></div>
+                            <h3>Pencarian Cepat</h3>
+                            <p>Temukan surat, ayat, atau topik tertentu secara instan.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="card-icon-box"><i class="fa-solid fa-bookmark"></i></div>
+                            <h3>Penanda Bacaan</h3>
+                            <p>Simpan ayat favorit dan tandai bacaan terakhir untuk tilawah harian.</p>
+                        </div>
+                    </div>
+
+                    <div class="gallery-slider">
+                        <div class="gallery-track">
+                            <div class="gallery-item"><img src="quranichome.jpg" alt="Quranic Home"></div>
+                            <div class="gallery-item"><img src="playerquranic.jpg" alt="Quranic Player"></div>
+                            <div class="gallery-item"><img src="qarireplace.jpg" alt="Quranic Qari"></div>
+                            <div class="gallery-item"><img src="qarilist.jpg" alt="Quranic Qari List"></div>
+                            <div class="gallery-item"><img src="surahreplace.jpg" alt="Quranic Surah Replace"></div>
+                            <div class="gallery-item"><img src="doalist.jpg" alt="Quranic Doa List"></div>
+                            <div class="gallery-item"><img src="library.jpg" alt="Quranic Library"></div>
+                            <div class="gallery-item"><img src="ambientsound.jpg" alt="Quranic Ambient"></div>
+                            <div class="gallery-item"><img src="settings.jpg" alt="Quranic Settings"></div>
+                            <div class="gallery-item"><img src="doadetail.jpg" alt="Quranic Doa Detail"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
             <!-- TEASER PROJECT BARU -->
-            <div class="app-block text-center" style="border-style: dashed; border-color: rgba(255, 255, 255, 0.2); padding: 50px 20px;">
-                <div style="width: 60px; height: 60px; border-radius: 50%; background: rgba(255, 255, 255, 0.05); display: flex; align-items: center; justify-content: center; margin: 0 auto 20px auto; border: 1px solid rgba(255, 255, 255, 0.15);">
-                    <i class="fa-solid fa-circle-question" style="font-size: 2rem; color: var(--text-dim);"></i>
+            <div class="app-block text-center" style="border-style: dashed; border-color: rgba(255, 255, 255, 0.2); padding: 40px 20px;">
+                <div style="width: 50px; height: 50px; border-radius: 50%; background: rgba(255, 255, 255, 0.05); display: flex; align-items: center; justify-content: center; margin: 0 auto 15px auto; border: 1px solid rgba(255, 255, 255, 0.15);">
+                    <i class="fa-solid fa-circle-question" style="font-size: 1.5rem; color: var(--text-dim);"></i>
                 </div>
                 <span class="section-tag" style="color: var(--purple-light);">COMING SOON</span>
-                <h3 style="font-family: var(--font-heading); font-size: 1.8rem; margin-bottom: 10px;">Proyek Selanjutnya?</h3>
-                <p style="color: var(--text-muted); max-width: 500px; margin: 0 auto; font-size: 0.95rem;">
-                    Sesuatu yang baru dan menarik sedang dalam tahap perencanaan. Tetap pantau untuk pembaruan dan karya berikutnya dari Janu Platforms!
+                <h3 style="font-family: var(--font-heading); font-size: 1.5rem; margin-bottom: 8px;">Proyek Selanjutnya?</h3>
+                <p style="color: var(--text-muted); max-width: 500px; margin: 0 auto; font-size: 0.9rem;">
+                    Sesuatu yang baru sedang dalam tahap perencanaan. Tetap pantau untuk pembaruan berikutnya!
                 </p>
             </div>
         </div>
@@ -1176,6 +1222,20 @@ html, body {
 
     <!-- JAVASCRIPT -->
     <script>
+    function toggleDetails(button, targetId) {
+        const content = document.getElementById(targetId);
+        button.classList.toggle('active');
+        content.classList.toggle('show');
+        
+        // Ubah teks tombol sesuai status accordion
+        const btnText = button.querySelector('span');
+        if (content.classList.contains('show')) {
+            btnText.textContent = 'Sembunyikan Detail';
+        } else {
+            btnText.textContent = 'Detail Fitur & Screenshot';
+        }
+    }
+
     document.addEventListener('DOMContentLoaded', () => {
 
         // Navbar Scroll Effect
