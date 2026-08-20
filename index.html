@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Noctera — Modern Music & AI Experience</title>
+    <title>Janu Platforms — Portfolio by Januar Adhi N</title>
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,7 +14,872 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <!-- CSS -->
-    <link rel="stylesheet" href="style.css">
+    <style>
+/* ==========================================================================
+   JANU PLATFORMS — DESIGN SYSTEM & RESPONSIVE STYLES
+   ========================================================================== */
+
+:root {
+    --bg-dark: #060A0C;
+    --bg-surface: rgba(12, 24, 28, 0.45);
+    --bg-surface-hover: rgba(20, 42, 48, 0.7);
+    
+    /* Theme Colors: Ungu (Noctera) & Hijau (Quranic) */
+    --purple-glow: #8B5CF6;
+    --purple-bright: #A855F7;
+    --purple-light: #C084FC;
+    
+    --green-glow: #059669;
+    --green-bright: #10B981;
+    --green-light: #34D399;
+    
+    --text-main: #FFFFFF;
+    --text-muted: rgba(255, 255, 255, 0.7);
+    --text-dim: rgba(255, 255, 255, 0.45);
+    
+    --border-glass: rgba(52, 211, 153, 0.15);
+    --border-glow: rgba(168, 85, 247, 0.35);
+    
+    --font-heading: 'Space Grotesk', sans-serif;
+    --font-body: 'Plus Jakarta Sans', sans-serif;
+}
+
+/* Global Reset & Anti Horizontal Overflow */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+html, body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden !important;
+    position: relative;
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    font-family: var(--font-body);
+    line-height: 1.6;
+}
+
+/* Ambient Lighting Background */
+.ambient-glow {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(140px);
+    pointer-events: none;
+    z-index: -1;
+    opacity: 0.3;
+}
+
+.glow-top {
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, var(--purple-bright) 0%, transparent 70%);
+    top: -150px;
+    left: 10%;
+}
+
+.glow-middle {
+    width: 550px;
+    height: 550px;
+    background: radial-gradient(circle, var(--green-glow) 0%, transparent 70%);
+    top: 45%;
+    right: -100px;
+}
+
+/* Container */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+/* ==========================================================================
+   HEADER & NAVBAR
+   ========================================================================== */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: 20px 0;
+    transition: all 0.3s ease;
+}
+
+.navbar.scrolled {
+    padding: 12px 0;
+    background: rgba(6, 10, 12, 0.88);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border-glass);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+}
+
+.nav-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+}
+
+.brand-name {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+    color: var(--text-main);
+}
+
+.nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    background: rgba(255, 255, 255, 0.03);
+    padding: 8px 28px;
+    border-radius: 40px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(10px);
+}
+
+.nav-link {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.nav-link:hover {
+    color: var(--green-light);
+}
+
+.mini-badge {
+    background: linear-gradient(135deg, var(--purple-bright), var(--purple-glow));
+    color: #fff;
+    font-size: 0.65rem;
+    padding: 2px 7px;
+    border-radius: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.badge-green {
+    background: linear-gradient(135deg, var(--green-bright), var(--green-glow)) !important;
+}
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.btn-primary-glow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: linear-gradient(135deg, rgba(168, 85, 247, 0.25), rgba(16, 185, 129, 0.25));
+    border: 1px solid var(--border-glow);
+    color: #fff;
+    padding: 10px 22px;
+    border-radius: 30px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 15px rgba(168, 85, 247, 0.2);
+}
+
+.btn-primary-glow:hover {
+    background: linear-gradient(135deg, var(--purple-bright), var(--green-bright));
+    box-shadow: 0 0 25px rgba(16, 185, 129, 0.4);
+    transform: translateY(-2px);
+}
+
+.mobile-cta-wrapper {
+    display: none;
+    width: 100%;
+}
+
+.btn-full {
+    width: 100%;
+    justify-content: center;
+    padding: 14px;
+}
+
+.menu-toggle {
+    display: none;
+}
+
+.menu-toggle .icon-close {
+    display: none !important;
+}
+
+.menu-toggle .icon-open {
+    display: inline-block !important;
+}
+
+/* ==========================================================================
+   HERO SECTION & DUAL PHONE VISUAL
+   ========================================================================== */
+.hero-section {
+    padding-top: 160px;
+    padding-bottom: 90px;
+}
+
+.hero-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 50px;
+    align-items: center;
+}
+
+.badge-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(16, 185, 129, 0.1);
+    border: 1px solid rgba(52, 211, 153, 0.3);
+    padding: 6px 16px;
+    border-radius: 20px;
+    color: var(--green-light);
+    font-size: 0.82rem;
+    font-weight: 600;
+    margin-bottom: 24px;
+}
+
+.hero-heading {
+    font-family: var(--font-heading);
+    font-size: 3.1rem;
+    line-height: 1.15;
+    font-weight: 800;
+    margin-bottom: 20px;
+}
+
+.gradient-text {
+    background: linear-gradient(135deg, var(--purple-light) 0%, var(--green-light) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero-subtext {
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    margin-bottom: 36px;
+    max-width: 520px;
+    font-weight: 300;
+}
+
+.hero-actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+}
+
+/* Store & Download Buttons */
+.btn-store {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: linear-gradient(135deg, var(--purple-bright) 0%, var(--purple-glow) 100%);
+    color: #fff;
+    padding: 12px 26px;
+    border-radius: 16px;
+    text-decoration: none;
+    box-shadow: 0 10px 30px rgba(124, 58, 237, 0.35);
+    transition: all 0.3s ease;
+    text-align: left;
+}
+
+.btn-store:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 40px rgba(168, 85, 247, 0.5);
+}
+
+.btn-store-green {
+    background: linear-gradient(135deg, var(--green-bright) 0%, var(--green-glow) 100%);
+    box-shadow: 0 10px 30px rgba(16, 185, 129, 0.35);
+}
+
+.btn-store-green:hover {
+    box-shadow: 0 15px 40px rgba(52, 211, 153, 0.5);
+}
+
+.store-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+}
+
+.store-text small {
+    font-size: 0.68rem;
+    opacity: 0.85;
+    letter-spacing: 0.5px;
+}
+
+.store-text span {
+    font-size: 0.95rem;
+    font-weight: 700;
+}
+
+.hero-metrics {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.metric-value {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--green-light);
+}
+
+.metric-label {
+    font-size: 0.78rem;
+    color: var(--text-dim);
+}
+
+.metric-divider {
+    width: 1px;
+    height: 28px;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* HERO VISUAL — DUAL PHONE */
+.hero-visual {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0;
+}
+
+.dual-phone-wrapper {
+    position: relative;
+    width: 360px;
+    height: 480px;
+    display: flex;
+    justify-content: center;
+}
+
+.phone-frame {
+    position: absolute;
+    width: 210px;
+    border-radius: 32px;
+    padding: 6px;
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.05));
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
+    transition: all 0.4s ease;
+}
+
+.app-screenshot {
+    width: 100%;
+    height: auto;
+    border-radius: 26px;
+    display: block;
+}
+
+.phone-left {
+    left: 10px;
+    top: 30px;
+    z-index: 1;
+    transform: rotate(-6deg);
+    border-color: rgba(52, 211, 153, 0.3);
+}
+
+.phone-right {
+    right: 10px;
+    top: 0;
+    z-index: 2;
+    transform: rotate(4deg);
+    border-color: rgba(168, 85, 247, 0.4);
+}
+
+.dual-phone-wrapper:hover .phone-left {
+    transform: rotate(-9deg) translateX(-10px);
+}
+.dual-phone-wrapper:hover .phone-right {
+    transform: rotate(6deg) translateX(10px);
+}
+
+.float-card {
+    position: absolute;
+    background: rgba(10, 18, 22, 0.9);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-radius: 12px;
+    padding: 8px 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    white-space: nowrap;
+}
+
+.float-art {
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.float-title {
+    display: block;
+    font-size: 0.78rem;
+    font-weight: 700;
+}
+
+.float-sub {
+    display: block;
+    font-size: 0.65rem;
+    color: var(--text-dim);
+}
+
+.float-left-card {
+    bottom: -15px;
+    left: -20px;
+    border: 1px solid rgba(52, 211, 153, 0.4);
+    animation: floatAnimation 4s ease-in-out infinite;
+}
+
+.float-right-card {
+    top: -15px;
+    right: -20px;
+    border: 1px solid rgba(168, 85, 247, 0.4);
+    animation: floatAnimation 4s ease-in-out infinite -2s;
+}
+
+@keyframes floatAnimation {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+
+/* ==========================================================================
+   PROJECT SECTIONS & NOCTERA CUSTOM STYLES
+   ========================================================================== */
+.projects-section {
+    padding: 60px 0 100px 0;
+}
+
+.section-title-box {
+    margin-bottom: 45px;
+}
+
+.section-title-box.text-center {
+    text-align: center;
+}
+
+.section-tag {
+    color: var(--green-light);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.section-heading {
+    font-family: var(--font-heading);
+    font-size: 2.3rem;
+    font-weight: 700;
+}
+
+.app-block {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-glass);
+    border-radius: 28px;
+    padding: 40px;
+    margin-bottom: 50px;
+    backdrop-filter: blur(16px);
+    transition: all 0.3s ease;
+}
+
+.app-block:hover {
+    border-color: rgba(168, 85, 247, 0.3);
+}
+
+/* Noctera Purple Theme Adjustments */
+.noctera-block {
+    border-color: rgba(168, 85, 247, 0.25) !important;
+}
+
+.noctera-block:hover {
+    border-color: var(--purple-light) !important;
+    box-shadow: 0 0 35px rgba(168, 85, 247, 0.15);
+}
+
+.card-icon-purple {
+    background: rgba(168, 85, 247, 0.15) !important;
+    color: var(--purple-light) !important;
+}
+
+.feature-card-purple:hover {
+    border-color: var(--purple-light) !important;
+}
+
+.gallery-track-purple::-webkit-scrollbar-thumb {
+    background: var(--purple-bright) !important;
+}
+
+.text-gradient-noctera {
+    background: linear-gradient(135deg, #C084FC 30%, #34D399 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.app-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.app-brand-logo {
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    object-fit: cover;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.app-header h3 {
+    font-family: var(--font-heading);
+    font-size: 1.6rem;
+    font-weight: 700;
+}
+
+.app-description {
+    color: var(--text-muted);
+    font-size: 0.98rem;
+    margin-bottom: 30px;
+    max-width: 800px;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-bottom: 35px;
+}
+
+.feature-card {
+    position: relative;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 20px;
+    padding: 24px 20px;
+    transition: all 0.3s ease;
+}
+
+.feature-card:hover {
+    background: var(--bg-surface-hover);
+    border-color: var(--green-light);
+    transform: translateY(-4px);
+}
+
+.card-icon-box {
+    width: 46px;
+    height: 46px;
+    border-radius: 12px;
+    background: rgba(16, 185, 129, 0.1);
+    color: var(--green-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    margin-bottom: 16px;
+}
+
+.feature-card h3 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.feature-card p {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    font-weight: 300;
+    line-height: 1.5;
+}
+
+.card-highlight {
+    border-color: rgba(168, 85, 247, 0.4);
+}
+
+.text-green {
+    color: var(--green-light) !important;
+}
+
+/* GALLERY SHOWCASE SLIDER */
+.gallery-slider {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.gallery-track {
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    padding: 10px 4px 20px 4px;
+    scroll-snap-type: x mandatory;
+    cursor: grab;
+}
+
+.gallery-track:active {
+    cursor: grabbing;
+}
+
+.gallery-track::-webkit-scrollbar {
+    height: 6px;
+}
+
+.gallery-track::-webkit-scrollbar-thumb {
+    background: var(--green-glow);
+    border-radius: 10px;
+}
+
+.gallery-item {
+    flex: 0 0 auto;
+    width: 190px;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    scroll-snap-align: center;
+    transition: transform 0.3s ease;
+}
+
+.gallery-item:hover {
+    transform: scale(1.03);
+    border-color: var(--green-light);
+}
+
+.gallery-item img {
+    width: 100%;
+    display: block;
+}
+
+.app-action-box {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+.btn-inline {
+    display: inline-flex;
+}
+
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
+.footer {
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding-top: 70px;
+    padding-bottom: 30px;
+    background: rgba(4, 7, 9, 0.95);
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 60px;
+    margin-bottom: 50px;
+}
+
+.footer-brand-info p {
+    color: var(--text-dim);
+    font-size: 0.88rem;
+    margin-top: 14px;
+    max-width: 320px;
+}
+
+.footer-navigation {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+}
+
+.footer-col h4 {
+    font-size: 0.9rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+    color: var(--green-light);
+}
+
+.footer-col a {
+    display: block;
+    color: var(--text-dim);
+    text-decoration: none;
+    font-size: 0.85rem;
+    margin-bottom: 10px;
+    transition: color 0.3s ease;
+}
+
+.footer-col a:hover {
+    color: var(--purple-light);
+}
+
+.footer-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    color: var(--text-dim);
+    font-size: 0.82rem;
+}
+
+.social-links {
+    display: flex;
+    gap: 18px;
+}
+
+.social-links a {
+    color: var(--text-dim);
+    font-size: 1rem;
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+    color: var(--green-light);
+}
+
+/* ==========================================================================
+   RESPONSIVE MEDIA QUERIES
+   ========================================================================== */
+@media (max-width: 1024px) {
+    .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .hero-heading {
+        font-size: 2.6rem;
+    }
+}
+
+@media (max-width: 900px) {
+    .hero-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 40px;
+    }
+    .hero-subtext {
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .hero-actions, .hero-metrics {
+        justify-content: center;
+    }
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 0 16px !important;
+    }
+
+    .desktop-only {
+        display: none !important;
+    }
+
+    .menu-toggle {
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        width: 42px;
+        height: 42px;
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid var(--border-glass);
+        border-radius: 12px;
+        color: var(--text-main);
+        font-size: 1.2rem;
+        cursor: pointer;
+        z-index: 1001;
+    }
+
+    .nav-menu {
+        position: fixed !important;
+        top: 0;
+        right: -100%;
+        width: 85% !important;
+        max-width: 300px !important;
+        height: 100vh;
+        background: rgba(6, 10, 12, 0.98) !important;
+        backdrop-filter: blur(25px);
+        -webkit-backdrop-filter: blur(25px);
+        border-left: 1px solid var(--border-glass);
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        padding: 85px 24px 30px 24px !important;
+        gap: 16px !important;
+        border-radius: 0 !important;
+        transition: right 0.35s ease !important;
+        z-index: 1000;
+    }
+
+    .nav-menu.active {
+        right: 0 !important;
+    }
+
+    .mobile-cta-wrapper {
+        display: block !important;
+    }
+
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .app-block {
+        padding: 24px 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .dual-phone-wrapper {
+        width: 290px;
+        height: 390px;
+    }
+    .phone-frame {
+        width: 170px;
+        border-radius: 26px;
+    }
+    .app-screenshot {
+        border-radius: 20px;
+    }
+    .float-card {
+        padding: 6px 10px;
+    }
+    .float-title {
+        font-size: 0.7rem;
+    }
+    .float-sub {
+        font-size: 0.6rem;
+    }
+}
+    </style>
 </head>
 <body>
 
@@ -27,31 +892,28 @@
         <div class="container nav-wrapper">
             <!-- Brand Logo -->
             <a href="#" class="brand">
-                <div class="brand-logo">
-                    <img src="logo.jpg" alt="Noctera Logo">
-                </div>
-                <span class="brand-name">NOCTERA</span>
+                <span class="brand-name">JANU<span class="gradient-text">PLATFORMS</span></span>
             </a>
 
             <!-- Menu Navigation -->
             <nav class="nav-menu" id="navMenu">
-                <a href="#features" class="nav-link">Fitur</a>
-                <a href="#lica-ai" class="nav-link">Lica AI <span class="mini-badge">Beta</span></a>
-                <a href="#preview" class="nav-link">Tampilan</a>
-                <a href="#collaborative" class="nav-link">Kolaborasi</a>
+                <a href="#about" class="nav-link">Tentang Saya</a>
+                <a href="#projects" class="nav-link">Aplikasi Kami</a>
+                <a href="#noctera" class="nav-link">Noctera</a>
+                <a href="#quranic" class="nav-link">Quranic</a>
                 
                 <div class="mobile-cta-wrapper">
-                    <a href="#download" class="btn-primary-glow btn-full">
-                        <i class="fa-brands fa-google-play"></i> Unduh App
+                    <a href="#projects" class="btn-primary-glow btn-full">
+                        <i class="fa-solid fa-shapes"></i> Lihat Produk
                     </a>
                 </div>
             </nav>
 
             <!-- Actions & Mobile Hamburger -->
             <div class="nav-actions">
-                <a href="#download" class="btn-primary-glow desktop-only">
-                    <span>Unduh App</span>
-                    <i class="fa-solid fa-arrow-down-long"></i>
+                <a href="#projects" class="btn-primary-glow desktop-only">
+                    <span>Lihat Produk</span>
+                    <i class="fa-solid fa-arrow-right"></i>
                 </a>
                 
                 <button class="menu-toggle" id="menuToggle" aria-label="Toggle Menu">
@@ -63,189 +925,216 @@
     </header>
 
     <!-- HERO SECTION -->
-    <section class="hero-section">
+    <section class="hero-section" id="about">
         <div class="container hero-grid">
             <div class="hero-text">
                 <div class="badge-tag">
-                    <i class="fa-solid fa-sparkles"></i>
-                    <span>Janu Platforms Nusantara</span>
+                    <i class="fa-solid fa-laptop-code"></i>
+                    <span>Portfolio by Januar Adhi N</span>
                 </div>
                 
                 <h1 class="hero-heading">
-                    Harmoni Musik Tanpa Batas Ruang, <span class="gradient-text">Ciptakan Bersama.</span>
+                    <span class="gradient-text">Janu Platforms</span>
                 </h1>
-                
+
                 <p class="hero-subtext">
-                    Nikmati audio resolusi tinggi, playlist kolaboratif real-time, dan kecerdasan <strong>Lica AI</strong> yang memahami suasana hatimu secara personal.
+                    Halo! Saya <strong>Januar Adhi N</strong>, lulusan TKJ yang lagi ngisi masa <i>gap year</i> buat fokus belajar Coding mandiri. saya mengembangkan aplikasi Android kayak pemutar musik <strong>Noctera</strong> dan aplikasi mendengarkan Al-Qur'an <strong>Quranic</strong>.
                 </p>
 
                 <div class="hero-actions">
-                    <a href="https://play.google.com/store/apps/details?id=com.adhikaryainv.voxa" target="_blank" class="btn-store">
-                        <i class="fa-brands fa-google-play"></i>
-                        <div class="store-text">
-                            <small>GET IT ON</small>
-                            <span>Google Play</span>
-                        </div>
-                    </a>
-                    
-                    <a href="#preview" class="btn-glass">
-                        <i class="fa-solid fa-circle-play"></i>
-                        <span>Lihat Demo</span>
+                    <a href="#projects" class="btn-primary-glow">
+                        <i class="fa-solid fa-rocket"></i>
+                        <span>Jelajahi Aplikasi</span>
                     </a>
                 </div>
 
                 <div class="hero-metrics">
                     <div class="metric-card">
+                        <span class="metric-value">2+</span>
+                        <span class="metric-label">Aplikasi Rilis</span>
+                    </div>
+                    <div class="metric-divider"></div>
+                    <div class="metric-card">
                         <span class="metric-value">1.000+</span>
-                        <span class="metric-label">Download</span>
+                        <span class="metric-label">Total Unduhan</span>
                     </div>
                     <div class="metric-divider"></div>
                     <div class="metric-card">
-                        <span class="metric-value">4.9★</span>
-                        <span class="metric-label">Rating</span>
-                    </div>
-                    <div class="metric-divider"></div>
-                    <div class="metric-card">
-                        <span class="metric-value">Real-Time</span>
-                        <span class="metric-label">Sync Playlist</span>
+                        <span class="metric-value">Self-Taught</span>
+                        <span class="metric-label">Gapyear Student</span>
                     </div>
                 </div>
             </div>
 
+            <!-- HERO VISUAL (2 HP OVERLAPPING) -->
             <div class="hero-visual">
-                <div class="phone-wrapper">
-                    <div class="phone-frame">
-                        <img src="licaAI.jpg" alt="Noctera App Interface" class="app-screenshot">
-                    </div>
-
-                    <!-- Floating Card Left -->
-                    <div class="float-card float-left">
-                        <img src="art-raimlaode.jpg" alt="Art Cover" class="float-art">
-                        <div class="float-info">
-                            <span class="float-title">Dunia Yang Nanti</span>
-                            <span class="float-sub">Raim Laode</span>
+                <div class="dual-phone-wrapper">
+                    <!-- Phone 1 (Noctera - Kiri/Belakang) -->
+                    <div class="phone-frame phone-left">
+                        <img src="home.jpg" alt="Noctera App Interface" class="app-screenshot">
+                        <div class="float-card float-left-card">
+                            <img src="logonoc.jpg" alt="Noctera App Icon" class="float-art">
+                            <div class="float-info">
+                                <span class="float-title">Noctera</span>
+                                <span class="float-sub">Listen Music</span>
+                            </div>
                         </div>
-                        <i class="fa-solid fa-heart active-heart"></i>
                     </div>
 
-                    <!-- Floating Card Right -->
-                    <div class="float-card float-right">
-                        <i class="fa-solid fa-wand-magic-sparkles"></i>
-                        <span>Lica AI Active</span>
+                    <!-- Phone 2 (Quranic - Kanan/Depan) -->
+                    <div class="phone-frame phone-right">
+                        <img src="quranichome.jpg" alt="Quranic App Interface" class="app-screenshot">
+                        <div class="float-card float-right-card">
+                            <img src="logoquranic.jpg" alt="Quranic App Icon" class="float-art">
+                            <div class="float-info">
+                                <span class="float-title">Quranic</span>
+                                <span class="float-sub">Listen Quran</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- FEATURES SECTION -->
-    <section class="features-section" id="features">
+    <!-- PROJECTS / FEATURED APPS SECTION -->
+    <section class="projects-section" id="projects">
         <div class="container">
             <div class="section-title-box text-center">
-                <span class="section-tag">FITUR UNGGULAN</span>
-                <h2 class="section-heading">Pengalaman Musik Lengkap Tanpa Batas</h2>
+                <span class="section-tag">PORTOFOLIO APLIKASI</span>
+                <h2 class="section-heading">Hasil Karya Aplikasi Saya</h2>
             </div>
 
-            <div class="features-grid">
-                <!-- Card 1: Playlist Kolaboratif -->
-                <div class="feature-card" id="collaborative">
-                    <div class="card-icon-box">
-                        <i class="fa-solid fa-users-rays"></i>
+            <!-- APP 1: NOCTERA -->
+            <div class="app-block noctera-block" id="noctera">
+                <div class="app-header">
+                    <img src="logonoc.jpg" alt="Noctera Logo" class="app-brand-logo">
+                    <div>
+                        <span class="mini-badge">Music & AI Platform</span>
+                        <h3>Noctera — <span class="text-gradient-noctera">Modern Music & AI Experience</span></h3>
                     </div>
-                    <h3>Playlist Kolaboratif</h3>
-                    <p>Undang teman untuk menambah, menyusun, dan mendengarkan trek musik bersama secara fleksibel kapan pun kamu mau.</p>
+                </div>
+                <p class="app-description">
+                    Pemutar musik generasi baru dengan integrasi <strong>Lica AI (Powered by Neuxon AI)</strong>. Menawarkan audio resolusi tinggi, kolaborasi playlist real-time, sinkronisasi lirik, serta fitur pengelolaan lagu mandiri.
+                </p>
+
+                <div class="features-grid">
+                    <div class="feature-card feature-card-purple card-highlight">
+                        <div class="card-icon-box card-icon-purple"><i class="fa-solid fa-brain"></i></div>
+                        <h3>Lica AI Assistant</h3>
+                        <p>Pelajari makna lirik, analisis mood lagu, dan dapatkan rekomendasi musik personal dari kecerdasan buatan.</p>
+                    </div>
+                    <div class="feature-card feature-card-purple">
+                        <div class="card-icon-box card-icon-purple"><i class="fa-solid fa-users-rays"></i></div>
+                        <h3>Playlist Kolaboratif</h3>
+                        <p>Susun, dengarkan, dan kelola daftar lagu favorit bersama teman-temanmu secara real-time.</p>
+                    </div>
+                    <div class="feature-card feature-card-purple">
+                        <div class="card-icon-box card-icon-purple"><i class="fa-solid fa-sliders"></i></div>
+                        <h3>Audio Lossless HD</h3>
+                        <p>Nikmati kualitas audio resolusi tinggi dengan kejernihan frekuensi suara dan dentuman bass yang kaya.</p>
+                    </div>
+                    <div class="feature-card feature-card-purple">
+                        <div class="card-icon-box card-icon-purple"><i class="fa-solid fa-cloud-arrow-up"></i></div>
+                        <h3>Upload & Offline Mode</h3>
+                        <p>Unggah file audio serta lirik sendiri, dan dengarkan lagu favoritmu kapan saja tanpa koneksi internet.</p>
+                    </div>
                 </div>
 
-                <!-- Card 2: Lica AI Highlight -->
-                <div class="feature-card card-highlight" id="lica-ai">
-                    <span class="card-badge">Powered By Neuxon AI</span>
-                    <div class="card-icon-box">
-                        <i class="fa-solid fa-brain"></i>
+                <div class="gallery-slider">
+                    <div class="gallery-track gallery-track-purple">
+                        <div class="gallery-item"><img src="home.jpg" alt="Noctera Home Screen"></div>
+                        <div class="gallery-item"><img src="options.jpg" alt="Noctera Music Player"></div>
+                        <div class="gallery-item"><img src="lirik.jpg" alt="Noctera Lyrics Screen"></div>
+                        <div class="gallery-item"><img src="licaAI.jpg" alt="Lica AI Analysis"></div>
+                        <div class="gallery-item"><img src="licaAI-Generative.jpg" alt="Lica AI Generative"></div>
                     </div>
-                    <h3>Lica AI Assistant</h3>
-                    <p>Pelajari arti lirik, cari fakta menarik seputar artis favorit, atau minta playlist unik berdasarkan mood kamu saat ini.</p>
                 </div>
 
-                <!-- Card 3: Katalog Lengkap -->
-                <div class="feature-card">
-                    <div class="card-icon-box">
-                        <i class="fa-solid fa-compact-disc"></i>
-                    </div>
-                    <h3>Lagu & Album Lengkap</h3>
-                    <p>Akses jutaan diskografi album, rilisan tunggal (single), hingga trek langka dari berbagai musisi lokal dan internasional.</p>
-                </div>
-
-                <!-- Card 4: Download & Lirik Offline -->
-                <div class="feature-card">
-                    <div class="card-icon-box">
-                        <i class="fa-solid fa-circle-down"></i>
-                    </div>
-                    <h3>Unduh & Lirik Offline</h3>
-                    <p>Simpan lagu favorit dan lirik lengkapnya langsung ke perangkat. Tetap bisa bernyanyi dan dengerin musik tanpa koneksi internet.</p>
-                </div>
-
-                <!-- Card 5: Upload Lagu & Lirik Mandiri -->
-                <div class="feature-card">
-                    <div class="card-icon-box">
-                        <i class="fa-solid fa-cloud-arrow-up"></i>
-                    </div>
-                    <h3>Upload Lagu & Lirik</h3>
-                    <p>Punya koleksi file audio atau lirik sendiri? Upload dengan mudah untuk diputar secara offline maupun disinkronkan ke pemutar.</p>
-                </div>
-
-                <!-- Card 6: Audio Lossless -->
-                <div class="feature-card">
-                    <div class="card-icon-box">
-                        <i class="fa-solid fa-sliders"></i>
-                    </div>
-                    <h3>Audio Lossless HD</h3>
-                    <p>Sajikan musik beresolusi tinggi dengan reproduksi frekuensi yang tajam dan dentuman bass yang kaya.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- GALLERY SCREENSHOT SHOWCASE -->
-    <section class="gallery-section" id="preview">
-        <div class="container">
-            <div class="section-title-box">
-                <span class="section-tag">TAMPILAN APLIKASI</span>
-                <h2 class="section-heading">Desain Antarmuka yang Elegan</h2>
-            </div>
-        </div>
-
-        <div class="gallery-slider">
-            <div class="gallery-track">
-                <div class="gallery-item"><img src="home.jpg" alt="Home Screen"></div>
-                <div class="gallery-item"><img src="player.jpg" alt="Music Player"></div>
-                <div class="gallery-item"><img src="lirik.jpg" alt="lirik songs"></div>
-                <div class="gallery-item"><img src="options.jpg" alt="Song Options"></div>
-                <div class="gallery-item"><img src="artist.jpg" alt="Artist Profile"></div>
-                <div class="gallery-item"><img src="album.jpg" alt="album songs"></div>
-                <div class="gallery-item"><img src="licaAI.jpg" alt="Lica AI Analysis"></div>
-                <div class="gallery-item"><img src="licaAI-Generative.jpg" alt="Lica AI Generative"></div>
-                <div class="gallery-item"><img src="spotifytonoctera.jpg" alt="Lica AI Generative"></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- DOWNLOAD / CTA SECTION -->
-    <section class="cta-section" id="download">
-        <div class="container">
-            <div class="cta-card">
-                <div class="cta-body">
-                    <img src="logo.jpg" alt="Noctera Logo" class="cta-logo">
-                    <h2>Unduh Noctera Sekarang</h2>
-                    <p>Rasakan era baru dalam mendengarkan musik. Gratis dan dapatkan kemudahan mengelola playlist favoritmu hari ini.</p>
-                    
-                    <a href="https://play.google.com/store/apps/details?id=com.adhikaryainv.voxa" target="_blank" class="btn-store btn-store-large">
-                        <i class="fa-brands fa-google-play"></i>
+                <div class="app-action-box text-center">
+                    <a href="https://play.google.com/store/apps/details?id=com.adhikaryainv.voxa" target="_blank" class="btn-store btn-inline">
+                        <i class="fa-brands fa-google-play fa-2x"></i>
                         <div class="store-text">
-                            <small>AVAILABLE ON GOOGLE PLAY</small>
-                            <span>Download Noctera App</span>
+                            <small>AVAILABLE ON</small>
+                            <span>Google Play Store</span>
                         </div>
                     </a>
                 </div>
+            </div>
+
+            <!-- APP 2: QURANIC -->
+            <div class="app-block" id="quranic">
+                <div class="app-header">
+                    <img src="logoquranic.jpg" alt="Quranic Logo" class="app-brand-logo">
+                    <div>
+                        <span class="mini-badge badge-green">Islamic</span>
+                        <h3>Quranic — Listen Quran</h3>
+                    </div>
+                </div>
+                <p class="app-description">
+                    Aplikasi Al-Qur'an digital modern yang dirancang untuk memberikan pengalaman membaca, mempelajari, dan merenungkan ayat-ayat suci Al-Qur'an secara nyaman, cepat, dan intuitif.
+                </p>
+
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="card-icon-box"><i class="fa-solid fa-book-quran"></i></div>
+                        <h3>Teks Digital & Terjemahan</h3>
+                        <p>Akses mushaf Al-Qur'an lengkap beserta terjemahan bahasa Indonesia yang jelas dan akurat.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="card-icon-box"><i class="fa-solid fa-headphones"></i></div>
+                        <h3>Audio Murottal</h3>
+                        <p>Dengarkan lantunan ayat suci dari berbagai Qari populer dengan kualitas audio yang jernih.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="card-icon-box"><i class="fa-solid fa-magnifying-glass text-green"></i></div>
+                        <h3>Pencarian Ayat Cepat</h3>
+                        <p>Temukan surat, ayat, atau topik tertentu dalam Al-Qur'an dengan sistem pencarian instan.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="card-icon-box"><i class="fa-solid fa-bookmark"></i></div>
+                        <h3>Penanda & Catatan</h3>
+                        <p>Simpan ayat favorit dan berikan penanda bacaan terakhir untuk mempermudah tilawah harian.</p>
+                    </div>
+                </div>
+
+                <div class="gallery-slider">
+                    <div class="gallery-track">
+                        <div class="gallery-item"><img src="quranichome.jpg" alt="Quranic Home Screen"></div>
+                        <div class="gallery-item"><img src="playerquranic.jpg" alt="Quranic Player Screen"></div>
+                        <div class="gallery-item"><img src="qarireplace.jpg" alt="Quranic Qari Replace"></div>
+                        <div class="gallery-item"><img src="qarilist.jpg" alt="Quranic Qari List"></div>
+                        <div class="gallery-item"><img src="surahreplace.jpg" alt="Quranic Surah Replace"></div>
+                        <div class="gallery-item"><img src="doalist.jpg" alt="Quranic Doa List"></div>
+                        <div class="gallery-item"><img src="library.jpg" alt="Quranic Library"></div>
+                        <div class="gallery-item"><img src="ambientsound.jpg" alt="Quranic Ambient Sound"></div>
+                        <div class="gallery-item"><img src="settings.jpg" alt="Quranic Settings"></div>
+                        <div class="gallery-item"><img src="doadetail.jpg" alt="Quranic Doa Detail"></div>
+                    </div>
+                </div>
+
+                <!-- TOMBOL DOWNLOAD APK QURANIC -->
+                <div class="app-action-box text-center">
+                    <a href="quranic.apk" download class="btn-store btn-store-green btn-inline">
+                        <i class="fa-solid fa-download fa-2x"></i>
+                        <div class="store-text">
+                            <small>DIRECT DOWNLOAD</small>
+                            <span>Download APK (Quranic)</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- TEASER PROJECT BARU -->
+            <div class="app-block text-center" style="border-style: dashed; border-color: rgba(255, 255, 255, 0.2); padding: 50px 20px;">
+                <div style="width: 60px; height: 60px; border-radius: 50%; background: rgba(255, 255, 255, 0.05); display: flex; align-items: center; justify-content: center; margin: 0 auto 20px auto; border: 1px solid rgba(255, 255, 255, 0.15);">
+                    <i class="fa-solid fa-circle-question" style="font-size: 2rem; color: var(--text-dim);"></i>
+                </div>
+                <span class="section-tag" style="color: var(--purple-light);">COMING SOON</span>
+                <h3 style="font-family: var(--font-heading); font-size: 1.8rem; margin-bottom: 10px;">Proyek Selanjutnya?</h3>
+                <p style="color: var(--text-muted); max-width: 500px; margin: 0 auto; font-size: 0.95rem;">
+                    Sesuatu yang baru dan menarik sedang dalam tahap perencanaan. Tetap pantau untuk pembaruan dan karya berikutnya dari Janu Platforms!
+                </p>
             </div>
         </div>
     </section>
@@ -255,39 +1144,130 @@
         <div class="container footer-grid">
             <div class="footer-brand-info">
                 <div class="brand">
-                    <div class="brand-logo">
-                        <img src="logo.jpg" alt="Noctera Logo">
-                    </div>
-                    <span class="brand-name">NOCTERA</span>
+                    <span class="brand-name">JANU<span class="gradient-text">PLATFORMS</span></span>
                 </div>
-                <p>Platform pemutar musik modern dengan integrasi AI cerdas dan kolaborasi playlist tanpa hambatan.</p>
+                <p>Portofolio karya dan proyek pengembangan aplikasi</p>
             </div>
 
             <div class="footer-navigation">
                 <div class="footer-col">
                     <h4>Navigasi</h4>
-                    <a href="#features">Fitur</a>
-                    <a href="#lica-ai">Lica AI</a>
-                    <a href="#download">Unduh</a>
+                    <a href="#about">Tentang Saya</a>
+                    <a href="#projects">Aplikasi</a>
+                    <a href="#noctera">Noctera</a>
+                    <a href="#quranic">Quranic</a>
                 </div>
-<div class="footer-col">
-    <h4>Kebijakan</h4>
-    <a href="privacy-terms.html#privacy">Privasi</a>
-    <a href="privacy-terms.html#terms">Syarat & Ketentuan</a>
-    <a href="mailto:adhikaryainnovations.media@gmail.com?subject=Bantuan%20Aplikasi%20Noctera">Pusat Bantuan</a>
-</div>
-
+                <div class="footer-col">
+                    <h4>Bantuan & Kontak</h4>
+                    <a href="privacy">Kebijakan Privasi</a>
+                    <a href="#terms">Syarat & Ketentuan</a>
+                    <a href="mailto:adhikaryainnovations.media@gmail.com?subject=Pertanyaan%20Janu%20Platforms">Hubungi Pengembang</a>
+                </div>
             </div>
         </div>
 
         <div class="container footer-bottom">
-            <p>&copy; 2026 Noctera App. All rights reserved.</p>
+            <p>&copy; 2026 Januar Adhi N. All rights reserved.</p>
             <div class="social-links">
-                <a href="https://www.instagram.com/noctera_app?igsh=MTNxYmR5ZTd6Z2Zqdw==" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://www.instagram.com/januaradhin" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
             </div>
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <!-- JAVASCRIPT -->
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+
+        // Navbar Scroll Effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 20) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile Menu Toggle (Hamburger)
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+        
+        if (menuToggle && navMenu) {
+            const iconOpen = menuToggle.querySelector('.icon-open');
+            const iconClose = menuToggle.querySelector('.icon-close');
+
+            function toggleMenu() {
+                const isOpen = navMenu.classList.toggle('active');
+                
+                if (isOpen) {
+                    if (iconOpen) iconOpen.style.setProperty('display', 'none', 'important');
+                    if (iconClose) iconClose.style.setProperty('display', 'inline-block', 'important');
+                    document.documentElement.style.overflow = 'hidden'; 
+                } else {
+                    if (iconOpen) iconOpen.style.setProperty('display', 'inline-block', 'important');
+                    if (iconClose) iconClose.style.setProperty('display', 'none', 'important');
+                    document.documentElement.style.overflow = 'auto'; 
+                }
+            }
+
+            menuToggle.addEventListener('click', toggleMenu);
+            
+            document.querySelectorAll('.nav-link, .mobile-cta-wrapper a').forEach(link => {
+                link.addEventListener('click', () => {
+                    if (navMenu.classList.contains('active')) {
+                        toggleMenu();
+                    }
+                });
+            });
+        }
+
+        // Smooth Scroll Offset
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const targetId = this.getAttribute('href');
+                if (targetId === '#' || !targetId) return;
+
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    e.preventDefault();
+                    const headerOffset = 80;
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Drag & Scroll Galeri
+        const galleryTracks = document.querySelectorAll('.gallery-track');
+        galleryTracks.forEach(track => {
+            let isDown = false;
+            let startX;
+            let scrollLeft;
+
+            track.addEventListener('mousedown', (e) => {
+                isDown = true;
+                startX = e.pageX - track.offsetLeft;
+                scrollLeft = track.scrollLeft;
+            });
+
+            track.addEventListener('mouseleave', () => { isDown = false; });
+            track.addEventListener('mouseup', () => { isDown = false; });
+
+            track.addEventListener('mousemove', (e) => {
+                if (!isDown) return;
+                e.preventDefault();
+                const x = e.pageX - track.offsetLeft;
+                const walk = (x - startX) * 2;
+                track.scrollLeft = scrollLeft - walk;
+            });
+        });
+
+    });
+    </script>
 </body>
 </html>
