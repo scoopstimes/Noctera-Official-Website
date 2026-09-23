@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Dukung Kami & Berbagi - AdhiKarya Group</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+        ::-webkit-scrollbar { width: 6px; height: 4px; }
+        ::-webkit-scrollbar-track { background: #070708; }
+        ::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.1); border-radius: 99px; }
+        ::-webkit-scrollbar-thumb:hover { background: rgba(139, 92, 246, 0.3); }
+        
+        body {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            touch-action: pan-x pan-y;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(4px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fadeIn {
+            animation: fadeIn 0.25s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        summary::-webkit-details-marker { display: none; }
+        summary { list-style: none; }
+        
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-[#070708] text-gray-200 font-sans antialiased selection:bg-purple-500/30 selection:text-white">
+
+    <div class="min-h-screen flex flex-col justify-between pt-10 pb-16 px-6">
+        <div class="max-w-2xl mx-auto w-full flex flex-col gap-6">
+            
+            <div>
+                <button type="button" onclick="window.location.href='index.html'" class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-gray-400 hover:text-white transition-colors bg-[#0f0f12] border border-white/[0.05] px-4 py-2.5 rounded-xl cursor-pointer">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7" />
+                    </svg>
+                    Kembali
+                </button>
+            </div>
+
+            <div class="flex justify-center">
+                <div class="p-0 flex flex-col items-center justify-center">
+                    <img src="logo-adhikarya.png" alt="AdhiKarya Group Logo" class="h-24 w-auto object-contain fallback-hidden" onerror="this.style.display='none'">
+                    <div class="text-sm font-black tracking-[0.25em] text-purple-400 px-4 py-2 uppercase border border-dashed border-purple-500/30 rounded-xl block [.fallback-hidden+&]:hidden">AK GROUP</div>
+                </div>
+            </div>
+
+            <div class="text-center my-2">
+                <h1 class="text-3xl font-black text-white tracking-tight mb-2 sm:text-4xl">Dukung & Berbagi</h1>
+                <p class="text-xs font-black tracking-[0.2em] uppercase bg-gradient-to-r from-gray-400 via-slate-200 to-purple-400 bg-clip-text text-transparent">Donasi & Jaga Layanan Tetap Gratis</p>
+            </div>
+
+            <form id="donation-form" onsubmit="event.preventDefault(); openQrisModal();" class="bg-[#0f0f12] border border-white/[0.05] rounded-3xl p-8 sm:p-12 shadow-2xl space-y-8">
+                
+                <input type="hidden" id="email-subject" name="_subject" value="Notifikasi Donasi Baru - AdhiKarya Group">
+                <input type="hidden" id="hidden-amount" name="Total Donasi" value="">
+                <input type="hidden" id="hidden-app" name="Alokasi Platform (50%)" value="">
+                <input type="hidden" id="hidden-charity" name="Alokasi Kemanusiaan (50%)" value="">
+
+                <div>
+                    <label class="block text-xs font-black uppercase tracking-widest text-gray-400 mb-4">1. Pilih Nominal Dukungan</label>
+                    <div class="grid grid-cols-2 gap-4 mb-4">
+                        <button type="button" onclick="selectAmount(10000, this)" class="preset-btn p-5 bg-[#070708] border border-white/[0.05] rounded-xl text-center transition-all group focus:outline-none cursor-pointer">
+                            <p class="text-base font-black text-white group-hover:text-purple-400">Rp 10.000</p>
+                        </button>
+                        <button type="button" onclick="selectAmount(25000, this)" class="preset-btn p-5 bg-[#070708] border border-white/[0.05] rounded-xl text-center transition-all group focus:outline-none cursor-pointer">
+                            <p class="text-base font-black text-white group-hover:text-purple-400">Rp 25.000</p>
+                        </button>
+                        <button type="button" onclick="selectAmount(50000, this)" class="preset-btn p-5 bg-[#070708] border border-white/[0.05] rounded-xl text-center transition-all group focus:outline-none cursor-pointer">
+                            <p class="text-base font-black text-white group-hover:text-purple-400">Rp 50.000</p>
+                        </button>
+                        <button type="button" onclick="selectAmount(100000, this)" class="preset-btn p-5 bg-[#070708] border border-white/[0.05] rounded-xl text-center transition-all group focus:outline-none cursor-pointer">
+                            <p class="text-base font-black text-white group-hover:text-purple-400">Rp 100.000</p>
+                        </button>
+                    </div>
+
+                    <div class="relative mt-5">
+                        <span class="absolute left-5 top-1/2 -translate-y-1/2 text-xs font-black text-gray-500">Rp</span>
+                        <input type="number" id="custom-amount" oninput="handleCustomInput(this)" placeholder="Atur nominal khusus..." class="w-full bg-[#070708] border border-white/[0.05] focus:border-purple-500/40 rounded-xl py-4 pl-12 pr-5 text-sm font-bold text-white focus:outline-none">
+                    </div>
+                </div>
+
+                <div id="breakdown-box" class="hidden bg-[#070708] border border-white/[0.03] rounded-2xl p-5 text-xs space-y-2.5 animate-fadeIn">
+                    <div class="flex justify-between text-gray-400">
+                        <span>Operasional Platform (50%):</span>
+                        <span id="app-share" class="font-bold text-gray-200">Rp 0</span>
+                    </div>
+                    <div class="flex justify-between text-purple-400/80">
+                        <span>Kemanusiaan (50%):</span>
+                        <span id="charity-share" class="font-black text-purple-400">Rp 0</span>
+                    </div>
+                </div>
+
+                <div class="pt-6 border-t border-white/[0.03]">
+                    <label class="block text-xs font-black uppercase tracking-widest text-gray-400 mb-4">2. Informasi Donatur</label>
+                    <div class="space-y-4">
+                        <div>
+                            <input type="text" id="donor-name" name="Nama Donatur" placeholder="Nama lengkap / nama panggilan kamu (Wajib)" required oninput="validateForm()" class="w-full bg-[#070708] border border-white/[0.05] focus:border-purple-500/40 rounded-xl p-4 text-sm font-semibold text-white focus:outline-none transition-colors">
+                        </div>
+                        <div>
+                            <input type="email" id="donor-email" name="Email Donatur" placeholder="Alamat email kamu (Opsional)" class="w-full bg-[#070708] border border-white/[0.05] focus:border-purple-500/40 rounded-xl p-4 text-sm font-semibold text-white focus:outline-none transition-colors">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pt-2">
+                    <button type="submit" id="submit-btn" class="w-full px-6 py-4.5 bg-gradient-to-r from-purple-700 via-purple-600 to-indigo-700 hover:opacity-90 text-white font-black rounded-xl shadow-xl active:scale-[0.99] text-xs uppercase tracking-wider flex items-center justify-center gap-2 disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer" disabled>
+                        Tampilkan QRIS Pembayaran
+                    </button>
+                </div>
+
+                <div class="bg-purple-950/[0.1] border border-purple-500/10 rounded-2xl p-5 relative overflow-hidden shadow-inner">
+                    <div class="absolute -right-4 -bottom-4 text-6xl opacity-10 select-none">🕊️</div>
+                    <div class="flex gap-3 items-start relative z-10">
+                        <div>
+                            <h4 class="text-xs font-extrabold text-purple-300 uppercase tracking-wider mb-1">50% Dikontribusikan</h4>
+                            <p class="text-[11px] text-gray-400 leading-relaxed">
+                                Setiap dukungan membantu infrastruktur kami menyala. Sebanyak <span class="text-purple-400 font-bold">50% dari total donasi</span> disalurkan ke aksi <span class="text-white font-semibold">Kemanusiaan</span>.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+
+            <div class="flex flex-col gap-3">
+                <details class="group bg-[#0f0f12] border border-white/[0.05] rounded-2xl overflow-hidden transition-all duration-300 [&_summary::-webkit-details-marker]:hidden">
+                    <summary class="flex justify-between items-center p-5 text-xs font-black uppercase tracking-wider text-gray-300 hover:text-white cursor-pointer select-none transition-colors">
+                        <span class="flex items-center gap-2">
+                            <span class="text-purple-400 text-sm">📢</span> Info Sistem Kontribusi
+                        </span>
+                        <svg class="w-4 h-4 text-gray-500 group-open:rotate-180 transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </summary>
+                    <div class="px-5 pb-5 border-t border-white/[0.02] pt-5 text-[11px] leading-relaxed space-y-4">
+                        <p class="text-gray-400 px-0.5">
+                            Sistem transparansi donasi ini dikembangkan untuk memastikan setiap rupiah dukungan dialokasikan secara adil dan otomatis melalui kalkulasi sistem:
+                        </p>
+                        <div class="grid grid-cols-1 gap-3">
+                            <div class="bg-[#07070a] border border-white/[0.04] p-4 rounded-xl flex items-start gap-4">
+                                <div class="w-12 h-12 shrink-0 bg-white/[0.02] border border-white/[0.05] rounded-xl flex flex-col items-center justify-center text-center">
+                                    <span class="text-sm font-black text-white leading-none">50</span>
+                                    <span class="text-[8px] font-black text-gray-500 uppercase tracking-tighter mt-0.5">%</span>
+                                </div>
+                                <div class="space-y-1">
+                                    <h4 class="text-xs font-black text-gray-200 tracking-wide uppercase">Infrastruktur & Server</h4>
+                                    <p class="text-gray-400 text-[10.5px]">
+                                        Digunakan sepenuhnya untuk membiayai kebutuhan pemeliharaan cloud server, optimasi database, dan penyediaan resource sistem agar seluruh layanan aplikasi<span class="text-white font-semibold"> Noctera</span> tetap beroperasi gratis tanpa gangguan komersial iklan.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="bg-[#07070a] border border-purple-500/10 p-4 rounded-xl flex items-start gap-4 relative overflow-hidden">
+                                <div class="absolute -right-2 -bottom-2 text-3xl opacity-5 select-none">🕊️</div>
+                                <div class="w-12 h-12 shrink-0 bg-purple-500/10 border border-purple-500/20 rounded-xl flex flex-col items-center justify-center text-center">
+                                    <span class="text-sm font-black text-purple-400 whitespace-nowrap leading-none">50</span>
+                                    <span class="text-[8px] font-black text-purple-400/60 uppercase tracking-tighter mt-0.5">%</span>
+                                </div>
+                                <div class="space-y-1">
+                                    <h4 class="text-xs font-black text-purple-400 tracking-wide uppercase flex items-center gap-1.5">Aksi Kemanusiaan</h4>
+                                    <p class="text-gray-400 text-[10.5px]">
+                                        Dana dipisahkan langsung ke dompet sosial kemanusiaan untuk disalurkan secara berkala ke jaringan <span class="text-purple-300 font-semibold">Panti Asuhan lokal</span> serta misi bantuan logistik kemanusiaan di <span class="text-purple-300 font-semibold">Palestina</span> melalui kitabisa.com.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </details>
+
+                <details class="group bg-[#0f0f12] border border-white/[0.05] rounded-2xl overflow-hidden transition-all duration-300 [&_summary::-webkit-details-marker]:hidden">
+                    <summary class="flex justify-between items-center p-5 text-xs font-black uppercase tracking-wider text-gray-300 hover:text-white cursor-pointer select-none transition-colors">
+                        <span class="flex items-center gap-2">
+                            <span class="text-purple-400 text-sm">💡</span> Cara Melakukan Donasi
+                        </span>
+                        <svg class="w-4 h-4 text-gray-500 group-open:rotate-180 transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </summary>
+                    <div class="px-5 pb-5 border-t border-white/[0.02] pt-4 text-[11px] text-gray-400 leading-relaxed space-y-3.5 animate-fadeIn">
+                        <div class="flex gap-3 items-start">
+                            <span class="w-5 h-5 shrink-0 bg-[#070708] border border-white/[0.05] rounded-lg text-white font-mono font-black text-[10px] flex items-center justify-center">1</span>
+                            <p class="pt-0.5">Tentukan nominal dukungan yang tertera pada kotak pilihan di atas, atau masukkan jumlah khusus yang kamu inginkan secara manual pada kolom input Rp.</p>
+                        </div>
+                        <div class="flex gap-3 items-start">
+                            <span class="w-5 h-5 shrink-0 bg-[#070708] border border-white/[0.05] rounded-lg text-white font-mono font-black text-[10px] flex items-center justify-center">2</span>
+                            <p class="pt-0.5">Isi identitas nama kamu (wajib) serta alamat email aktif (opsional) pada form informasi donatur, lalu klik tombol <strong>"Tampilkan QRIS Pembayaran"</strong>.</p>
+                        </div>
+                        <div class="flex gap-3 items-start">
+                            <span class="w-5 h-5 shrink-0 bg-[#070708] border border-white/[0.05] rounded-lg text-white font-mono font-black text-[10px] flex items-center justify-center">3</span>
+                            <p class="pt-0.5">Sebuah kode QRIS dinamis otomatis akan muncul di tengah layar. Buka aplikasi M-Banking (BCA, Mandiri, BRI, dll) atau E-Wallet pilihanmu (Dana, OVO, GoPay, LinkAja, ShopeePay).</p>
+                        </div>
+                        <div class="flex gap-3 items-start">
+                            <span class="w-5 h-5 shrink-0 bg-[#070708] border border-white/[0.05] rounded-lg text-white font-mono font-black text-[10px] flex items-center justify-center">4</span>
+                            <p class="pt-0.5">Pilih menu scan/pindai QR code, arahkan ke QRIS di layar handphone, lalu konfirmasi nominal saldo pembayaran. Nominal donasi akan otomatis terisi pas tanpa perlu mengetik ulang angka pembayaran.</p>
+                        </div>
+                        <div class="flex gap-3 items-start">
+                            <span class="w-5 h-5 shrink-0 bg-[#070708] border border-white/[0.05] rounded-lg text-white font-mono font-black text-[10px] flex items-center justify-center">5</span>
+                            <p class="pt-0.5">Setelah transaksi berhasil dikonfirmasi pada aplikasi e-wallet atau bank kamu, ketuk tombol <strong>"Saya Sudah Bayar (Selesai)"</strong> pada pop-up modal QRIS untuk menyelesaikan integrasi pencatatan database live komunitas.</p>
+                        </div>
+                    </div>
+                </details>
+            </div>
+
+            <div class="mt-4 text-center">
+                <button type="button" onclick="openDashboardModal()" class="inline-flex items-center gap-2.5 px-6 py-4 bg-[#0f0f12] hover:bg-[#141418] border border-white/[0.05] hover:border-purple-500/30 text-xs font-black uppercase tracking-widest text-purple-400 hover:text-purple-300 rounded-2xl transition-all shadow-md cursor-pointer active:scale-95">
+                    <svg class="w-4 h-4 text-purple-500" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" />
+                    </svg>
+                    Lihat Donatur & Log Pengeluaran
+                </button>
+            </div>
+
+        </div>
+
+        <div class="text-center mt-16 border-t border-white/[0.03] pt-6 max-w-2xl mx-auto w-full">
+            <p class="text-[10px] text-gray-600 tracking-widest uppercase font-bold">AdhiKarya Group</p>
+        </div>
+    </div>
+
+    <div id="dashboard-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md hidden opacity-0 transition-all duration-300">
+        <div class="bg-[#0f0f12] border border-white/[0.08] w-full max-w-lg rounded-3xl p-6 shadow-2xl flex flex-col gap-4 transform scale-95 transition-all duration-300 relative">
+            
+            <button onclick="closeDashboardModal()" class="absolute top-5 right-5 text-gray-500 hover:text-white transition-colors p-1.5 bg-[#070708] border border-white/[0.05] rounded-xl cursor-pointer z-10">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"/>
+                </svg>
+            </button>
+
+            <div class="text-left pr-10">
+                <span class="block text-[9px] font-black uppercase tracking-widest text-purple-400">Dukungan & Transparansi</span>
+                <span class="text-xs font-black text-white">AdhiKarya Group</span>
+            </div>
+
+            <div class="flex bg-[#070708] border border-white/[0.03] rounded-2xl p-1 overflow-x-auto no-scrollbar gap-1">
+                <button type="button" onclick="switchTab('realtime')" id="btn-realtime" class="tab-btn flex-1 min-w-[90px] py-2.5 text-[10px] font-black uppercase tracking-widest rounded-xl transition-all duration-200 bg-white/10 text-white shadow-md cursor-pointer flex items-center justify-center gap-1">
+                    <span class="h-1 w-1 rounded-full bg-purple-400 animate-pulse"></span>
+                    Baru
+                </button>
+                <button type="button" onclick="switchTab('top')" id="btn-top" class="tab-btn flex-1 min-w-[90px] py-2.5 text-[10px] font-black uppercase tracking-widest rounded-xl transition-all duration-200 text-gray-500 hover:text-white cursor-pointer flex items-center justify-center gap-1">
+                    Top 5
+                </button>
+                <button type="button" onclick="switchTab('expenses')" id="btn-expenses" class="tab-btn flex-1 min-w-[105px] py-2.5 text-[10px] font-black uppercase tracking-widest rounded-xl transition-all duration-200 text-gray-500 hover:text-white cursor-pointer flex items-center justify-center gap-1">
+                    Pengeluaran
+                </button>
+                <button type="button" onclick="switchTab('proofs')" id="btn-proofs" class="tab-btn flex-1 min-w-[105px] py-2.5 text-[10px] font-black uppercase tracking-widest rounded-xl transition-all duration-200 text-gray-500 hover:text-white cursor-pointer flex items-center justify-center gap-1">
+                    📸 Bukti Sos
+                </button>
+            </div>
+
+            <div class="relative min-h-[390px] w-full">
+                
+                <div id="content-realtime" class="tab-content block animate-fadeIn h-full flex flex-col justify-between">
+                    <div class="flex flex-col h-full justify-between">
+                        <div class="flex flex-col gap-2 mb-3 group/filter">
+                            
+                            <div class="bg-[#07070a] border border-white/[0.03] p-3.5 rounded-2xl flex flex-col gap-1 mb-1">
+                                <span class="text-[9px] font-black uppercase tracking-widest text-purple-400">Total Dana Terkumpul (Periode Ini)</span>
+                                <div class="flex justify-between items-baseline">
+                                    <span id="total-funds-amount" class="text-xl font-black text-white tracking-tight">Rp 0</span>
+                                    <span id="donors-count" class="text-[9px] bg-purple-500/10 border border-purple-500/20 text-purple-400 px-2 py-0.5 rounded-full font-black">0 Sesi</span>
+                                </div>
+                            </div>
+                            
+                            <details class="group bg-[#07070a] border border-white/[0.04] rounded-2xl overflow-hidden transition-all duration-200">
+                                <summary class="flex justify-between items-center p-3 text-[10px] font-black uppercase tracking-wider text-gray-400 hover:text-white cursor-pointer select-none transition-colors">
+                                    <span class="flex items-center gap-1.5">
+                                        <span>🛠️</span> Panel Filter
+                                    </span>
+                                    <div class="flex items-center gap-2">
+                                        <span id="active-filter-indicator" class="text-[9px] text-purple-400 font-bold bg-purple-500/5 border border-purple-500/10 px-2 py-0.5 rounded-md lowercase">semua data</span>
+                                        <svg class="w-3.5 h-3.5 text-gray-500 group-open:rotate-180 transition-transform duration-200" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+                                        </svg>
+                                    </div>
+                                </summary>
+                                
+                                <div class="px-3 pb-3 border-t border-white/[0.02] pt-3 flex flex-col gap-3 animate-fadeIn">
+                                    <div class="flex items-center justify-between gap-4">
+                                        <label for="filter-year-input" class="text-[9px] font-black uppercase tracking-widest text-gray-500 whitespace-nowrap">🔢 Input Tahun:</label>
+                                        <input type="number" id="filter-year-input" oninput="handleYearInput(this)" placeholder="Contoh: 2026" value="2026" min="2000" max="2099" class="w-24 bg-[#0f0f12] border border-white/[0.05] focus:border-purple-500/40 rounded-lg px-2.5 py-1.5 text-[11px] font-black text-center text-white focus:outline-none transition-colors">
+                                    </div>
+                                    
+                                    <div class="flex flex-col gap-1.5 border-t border-white/[0.02] pt-2.5">
+                                        <div class="flex justify-between items-center px-0.5">
+                                            <span class="text-[9px] font-black uppercase tracking-widest text-gray-500">🌙 Pilih Bulan:</span>
+                                            <button type="button" onclick="clearDateFilter()" id="clear-filter-btn" class="text-[9px] font-black uppercase tracking-widest text-purple-300 hover:text-purple-400 transition-colors cursor-pointer hidden">Reset Bulan</button>
+                                        </div>
+                                        <div class="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-0.5" id="month-scroll-container"></div>
+                                    </div>
+                                </div>
+                            </details>
+
+                            <div id="donors-list" class="space-y-3 h-[250px] group-open/filter:h-[145px] overflow-y-auto pr-1 transition-all duration-300 mt-2">
+                                <p class="text-xs text-gray-500 text-center py-6 animate-pulse">Memuat database donasi...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="content-top" class="tab-content hidden animate-fadeIn h-full flex flex-col">
+                    <div class="flex justify-between items-center mb-3">
+                        <h2 class="text-[10px] font-black uppercase tracking-widest text-gray-400 flex items-center gap-2">
+                            <svg class="w-3.5 h-3.5 text-amber-400" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 18.75h-9m9 0a3 3 0 013 3h-15a3 3 0 013-3m9 0v-3.375c0-.621-.503-1.125-1.125-1.125h-5.25a1.125 1.125 0 00-1.125 1.125v3.375m9 0h-9M21 12a3 3 0 00-3-3h-1.5V6a3 3 0 00-3-3h-3a3 3 0 00-3 3v3H6a3 3 0 00-3 3v3a3 3 0 003 3h12a3 3 0 003-3v-3z"/>
+                            </svg>
+                            Top 5 Donatur Terbesar
+                        </h2>
+                        <span id="current-month-badge" class="text-[9px] bg-indigo-500/10 border border-indigo-500/20 text-indigo-300 px-2.5 py-0.5 rounded-full font-black uppercase tracking-wider">Bulan Ini</span>
+                    </div>
+                    <div id="top-donors-list" class="space-y-2.5 h-[330px] overflow-y-auto pr-1">
+                        <p class="text-xs text-gray-500 text-center py-4 animate-pulse">Menghitung peringkat...</p>
+                    </div>
+                </div>
+
+<div id="content-expenses" class="tab-content hidden animate-fadeIn h-full flex flex-col">
+    <div class="grid grid-cols-2 gap-2 text-[11px] mb-4 font-semibold">
+        <div class="bg-[#07070a] border border-white/[0.03] p-3 rounded-2xl flex flex-col gap-0.5">
+            <span class="text-[8px] font-black uppercase tracking-widest text-gray-500">Dana Infra 50%</span>
+            <span id="balance-infra-display" class="text-sm font-black text-white">Rp 0</span>
+        </div>
+        <div class="bg-[#07070a] border border-purple-500/10 p-3 rounded-2xl flex flex-col gap-0.5">
+            <span class="text-[8px] font-black uppercase tracking-widest text-purple-400/70">Dana Kemanusiaan 50%</span>
+            <span id="balance-charity-display" class="text-sm font-black text-purple-400">Rp 0</span>
+        </div>
+    </div>
+
+    <div class="flex justify-between items-center mb-2 px-0.5">
+        <h3 class="text-[10px] font-black uppercase tracking-widest text-gray-400 flex items-center gap-2">
+            <span class="h-1.5 w-1.5 rounded-full bg-red-500"></span> Riwayat Pengeluaran Dana
+        </h3>
+    </div>
+    <div id="expenses-list" class="space-y-3 h-[260px] overflow-y-auto pr-1">
+        <p class="text-xs text-gray-500 text-center py-8">Memuat data pengeluaran...</p>
+    </div>
+</div>
+
+
+                <div id="content-proofs" class="tab-content hidden animate-fadeIn h-full flex flex-col">
+                    <div class="flex justify-between items-center mb-3 px-0.5">
+                        <h3 class="text-[10px] font-black uppercase tracking-widest text-purple-400 flex items-center gap-2">
+                            <span>📸</span> Berkas Transaksi Sosial
+                        </h3>
+                    </div>
+                    <div id="proof-gallery-list" class="space-y-3 h-[340px] overflow-y-auto pr-1">
+                        <p class="text-xs text-gray-500 text-center py-8">Memuat berkas fisik...</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div id="qris-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-xl hidden opacity-0 transition-all duration-300">
+        <div class="bg-[#0f0f14]/80 border border-purple-500/20 w-full max-w-md rounded-[2.5rem] p-8 shadow-[0_0_50px_rgba(147,51,234,0.15)] text-center transform scale-95 transition-all duration-300 relative overflow-hidden backdrop-blur-md flex flex-col gap-4">
+            <div class="absolute -top-16 -right-16 w-36 h-36 bg-purple-600/20 blur-3xl rounded-full pointer-events-none"></div>
+            <div class="absolute -bottom-16 -left-16 w-36 h-36 bg-indigo-600/20 blur-3xl rounded-full pointer-events-none"></div>
+
+            <div class="flex justify-between items-center relative z-10">
+                <div class="text-left flex items-center gap-2">
+                    <div>
+                        <span class="block text-[9px] font-black uppercase tracking-widest text-purple-400/80">Platform Bersama</span>
+                        <span class="text-xs font-black text-white tracking-wide">Toko Sinar</span>
+                    </div>
+                </div>
+                <button onclick="closeQrisModal()" class="text-gray-400 hover:text-white transition-all p-1.5 bg-white/[0.03] border border-white/[0.05] hover:border-purple-500/30 rounded-xl cursor-pointer">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+
+            <div class="bg-[#07070a]/90 rounded-2xl py-4 px-5 border border-purple-500/10 shadow-inner relative z-10">
+                <p class="text-[10px] text-purple-400/60 font-black uppercase tracking-widest">Jumlah Keikhlasan</p>
+                <p id="modal-total-display" class="text-2xl font-black bg-gradient-to-r from-white via-slate-100 to-purple-300 bg-clip-text text-transparent tracking-tight mt-0.5">Rp 0</p>
+            </div>
+
+            <div class="relative inline-block p-1 rounded-[2rem] bg-gradient-to-b from-purple-500/40 via-purple-500/5 to-indigo-500/30 shadow-[0_0_30px_rgba(147,51,234,0.1)] mx-auto">
+                <div class="absolute -top-2.5 -left-2.5 bg-[#14141d] border border-purple-500/30 text-white rounded-full p-2 text-xs shadow-xl transform -rotate-12 animate-bounce select-none z-10">❤️</div>
+                <div class="absolute -bottom-2.5 -right-2.5 bg-gradient-to-r from-purple-600 to-indigo-600 text-white rounded-full p-2 text-xs shadow-xl transform rotate-12 select-none z-10">🤲</div>
+                
+                <div class="bg-white p-5 rounded-[1.75rem] shadow-2xl relative">
+                    <img id="qris-image-display" src="" alt="QRIS Toko Sinar" class="w-52 h-52 object-contain mx-auto mix-blend-multiply">
+                </div>
+            </div>
+
+            <div class="inline-flex items-center gap-1.5 bg-purple-500/10 border border-purple-500/20 text-purple-300 rounded-xl py-2.5 px-4 text-[9px] font-black uppercase tracking-widest mx-auto relative z-10 shadow-sm">
+                <span class="flex h-1.5 w-1.5 rounded-full bg-emerald-400"></span>
+                Nominal terisi otomatis saat di-scan
+            </div>
+
+            <p class="text-[11px] text-gray-400/80 leading-relaxed px-3 relative z-10">
+                Buka aplikasi bank atau e-wallet pilihanmu, arahkan pemindai ke kode QRIS di atas untuk menyelesaikan donasi.
+            </p>
+
+            <button type="button" id="pay-done-btn" onclick="sendEmailAndShowSuccess()" class="w-full px-6 py-4 bg-gradient-to-r from-purple-700 via-purple-600 to-indigo-700 hover:from-purple-600 hover:to-indigo-600 text-white font-black rounded-xl shadow-[0_4px_20px_rgba(126,34,206,0.3)] text-xs uppercase tracking-widest transition-all active:scale-[0.98] cursor-pointer border border-purple-400/20 mt-2">
+                Saya Sudah Bayar (Selesai)
+            </button>
+        </div>
+    </div>
+
+    <div id="success-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-md hidden opacity-0 transition-all duration-300">
+        <div class="bg-[#0f0f12] border border-white/[0.08] w-full max-w-md rounded-3xl p-10 shadow-2xl text-center transform scale-95 transition-all duration-300 relative overflow-hidden flex flex-col gap-4">
+            <div class="w-16 h-16 bg-emerald-500/10 border border-emerald-500/30 rounded-full flex items-center justify-center mx-auto mb-2 shadow-inner">
+                <svg class="w-8 h-8 text-emerald-400" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+            </div>
+            <h3 class="text-xl font-black text-white tracking-tight">Donasi Berhasil!</h3>
+            <p class="text-xs text-gray-400 leading-relaxed px-1">Terima kasih, <span id="success-name" class="text-white font-bold">Donatur</span>! Dukungan sebesar <span id="success-amount" class="text-purple-400 font-extrabold">Rp 0</span> telah dicatat.</p>
+            <div class="bg-[#070708] rounded-2xl p-5 border border-white/[0.02] text-left text-[11px] space-y-3 shadow-inner">
+                <div class="flex justify-between border-b border-white/[0.03] pb-2.5"><span class="text-gray-500">Platform Infrastructure (50%)</span><span id="success-app" class="text-gray-300 font-mono">Rp 0</span></div>
+                <div class="flex justify-between"><span class="text-purple-400/80">Kemanusiaan (50%)</span><span id="success-charity" class="text-purple-400 font-mono font-bold">Rp 0</span></div>
+            </div>
+            <button type="button" onclick="redirectToIndex()" class="w-full px-6 py-4 bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-bold rounded-xl text-xs uppercase tracking-wider mt-2">Kembali ke Beranda</button>
+        </div>
+    </div>
+
+    <script>
+        function switchTab(tabName) {
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('block');
+                content.classList.add('hidden');
+            });
+
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('bg-white/10', 'text-white', 'shadow-md');
+                btn.classList.add('text-gray-500', 'hover:text-white');
+            });
+
+            const activeContent = document.getElementById(`content-${tabName}`);
+            if (activeContent) {
+                activeContent.classList.remove('hidden');
+                activeContent.classList.add('block');
+            }
+
+            const activeBtn = document.getElementById(`btn-${tabName}`);
+            if (activeBtn) {
+                activeBtn.classList.remove('text-gray-500', 'hover:text-white');
+                activeBtn.classList.add('bg-white/10', 'text-white', 'shadow-md');
+            }
+        }
+    </script>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.1.0/firebase-app.js";
+        import { getFirestore, collection, query, orderBy, onSnapshot } from "https://www.gstatic.com/firebasejs/9.1.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyBmrwaS0LUoO2jrIfwE5HM_1k5MYlTeodY",
+            authDomain: "commentapp-59d37.firebaseapp.com",
+            projectId: "commentapp-59d37",
+            storageBucket: "commentapp-59d37.appspot.com",
+            messagingSenderId: "693404196994",
+            appId: "1:693404196994:web:364b1abcd73f58b24e549b",
+            measurementId: "G-8SBHH89RF3"
+        };
+        
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        let cachedDonations = [];
+        let activeFilterYear = 2026;
+        let activeFilterMonth = null; 
+
+        const monthNamesShort = ["JAN", "FEB", "MAR", "APR", "MEI", "JUN", "JUL", "AGU", "SEP", "OKT", "NOV", "DES"];
+        const monthNamesFull = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+
+        function buildMonthFilterUI() {
+            const container = document.getElementById('month-scroll-container');
+            if(!container) return;
+            container.innerHTML = '';
+
+            monthNamesShort.forEach((monthName, index) => {
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.id = `m-btn-${index}`;
+                btn.onclick = () => selectFilterMonth(index);
+                btn.className = "scroll-month-btn px-4 py-2 text-[10px] font-black tracking-wider rounded-xl border border-white/[0.04] bg-white/[0.01] text-gray-400 hover:text-white shrink-0 transition-all cursor-pointer";
+                btn.innerText = monthName;
+                container.appendChild(btn);
+            });
+        }
+
+        window.handleYearInput = function(inputEl) {
+            const val = parseInt(inputEl.value);
+            if (val >= 2000 && val <= 2099) {
+                activeFilterYear = val;
+            } else {
+                activeFilterYear = new Date().getFullYear();
+            }
+            updateIndicatorText();
+            renderDonationsList();
+        }
+
+        window.selectFilterMonth = function(monthIndex) {
+            activeFilterMonth = monthIndex;
+            document.getElementById('clear-filter-btn').classList.remove('hidden');
+
+            document.querySelectorAll('.scroll-month-btn').forEach(btn => {
+                btn.className = "scroll-month-btn px-4 py-2 text-[10px] font-black tracking-wider rounded-xl border border-white/[0.04] bg-white/[0.01] text-gray-400 hover:text-white shrink-0 transition-all cursor-pointer";
+            });
+
+            const activeBtn = document.getElementById(`m-btn-${monthIndex}`);
+            if(activeBtn) {
+                activeBtn.className = "scroll-month-btn px-4 py-2 text-[10px] font-black tracking-wider rounded-xl border border-purple-500/30 bg-purple-500/10 text-purple-400 shrink-0 transition-all cursor-pointer shadow-sm";
+            }
+
+            updateIndicatorText();
+            renderDonationsList();
+        }
+
+        window.clearDateFilter = function() {
+            activeFilterMonth = null;
+            document.getElementById('clear-filter-btn').classList.add('hidden');
+            
+            document.querySelectorAll('.scroll-month-btn').forEach(btn => {
+                btn.className = "scroll-month-btn px-4 py-2 text-[10px] font-black tracking-wider rounded-xl border border-white/[0.04] bg-white/[0.01] text-gray-400 hover:text-white shrink-0 transition-all cursor-pointer";
+            });
+
+            updateIndicatorText();
+            renderDonationsList();
+        }
+
+        function updateIndicatorText() {
+            const indicator = document.getElementById('active-filter-indicator');
+            if(!indicator) return;
+            if (activeFilterMonth === null) {
+                indicator.innerText = `tahun ${activeFilterYear}`;
+            } else {
+                indicator.innerText = `${monthNamesFull[activeFilterMonth].toLowerCase()} ${activeFilterYear}`;
+            }
+        }
+
+                        function renderExpensesAndProofs() {
+            const expensesContainer = document.getElementById('expenses-list');
+            const proofsContainer = document.getElementById('proof-gallery-list');
+            const balanceInfraDisplay = document.getElementById('balance-infra-display');
+            const balanceCharityDisplay = document.getElementById('balance-charity-display');
+            
+            expensesContainer.innerHTML = '';
+            proofsContainer.innerHTML = '';
+
+            // 1. KALKULASI SALDO JATAH DANA
+            let totalInflow = 0;
+            let totalOutflowInfra = 0;
+            let totalOutflowCharity = 0;
+
+            cachedDonations.forEach(item => {
+                const amount = parseInt(item.amount) || 0;
+                if (!item.type || item.type === 'in') {
+                    // Total semua uang donasi masuk
+                    totalInflow += amount;
+                } else if (item.type === 'out') {
+                    // Total uang keluar berdasarkan sektor
+                    if (item.sector === 'infra') {
+                        totalOutflowInfra += amount;
+                    } else {
+                        totalOutflowCharity += amount;
+                    }
+                }
+            });
+
+            // Bagi jatah masuk 50% rata
+            let initialJatahInfra = Math.floor(totalInflow * 0.5);
+            let initialJatahCharity = totalInflow - initialJatahInfra;
+
+            // Hitung sisa saldo (Jatah awal dikurangi yang dikeluarkan)
+            let currentBalanceInfra = initialJatahInfra - totalOutflowInfra;
+            let currentBalanceCharity = initialJatahCharity - totalOutflowCharity;
+
+            // Tampilkan hasil ke panel saldo baru
+            if (balanceInfraDisplay) balanceInfraDisplay.innerText = 'Rp ' + currentBalanceInfra.toLocaleString('id-ID');
+            if (balanceCharityDisplay) balanceCharityDisplay.innerText = 'Rp ' + currentBalanceCharity.toLocaleString('id-ID');
+
+
+            // 2. RENDER DAFTAR RIWAYAT PENGELUARAN
+            let expenseItems = cachedDonations.filter(item => item.type === 'out');
+
+            if (expenseItems.length === 0) {
+                expensesContainer.innerHTML = `<p class="text-xs text-gray-500 text-center py-8">Belum ada catatan pengeluaran dana.</p>`;
+                proofsContainer.innerHTML = `<p class="text-xs text-gray-500 text-center py-8">Belum ada berkas penyaluran sosial.</p>`;
+                return;
+            }
+
+            let proofCount = 0;
+
+            expenseItems.forEach((exp) => {
+                const amount = parseInt(exp.amount) || 0;
+                const sector = exp.sector || 'infra';
+                const proofUrl = exp.proofUrl || '';
+
+                let dateString = "---";
+                let shortDate = "---";
+                if (exp.timestamp) {
+                    const d = exp.timestamp.toDate();
+                    dateString = d.toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' });
+                    shortDate = d.toLocaleDateString('id-ID', { day: 'numeric', month: 'short' });
+                }
+
+                const expBox = document.createElement('div');
+                expBox.className = "bg-[#070708] border border-white/[0.04] p-4 rounded-2xl flex flex-col gap-3 text-xs animate-fadeIn";
+                
+                const sectorBadge = sector === 'infra' 
+                    ? `<span class="text-[9px] bg-purple-500/10 text-purple-400 font-bold px-1.5 py-0.5 rounded-md uppercase shrink-0">Infrastruktur</span>` 
+                    : `<span class="text-[9px] bg-indigo-500/10 text-indigo-400 font-bold px-1.5 py-0.5 rounded-md uppercase shrink-0">Kemanusiaan</span>`;
+
+                const embeddedProofHtml = (sector === 'humanity' && proofUrl) 
+                    ? `
+                    <a href="${proofUrl}" target="_blank" class="block w-full h-28 rounded-xl overflow-hidden border border-white/5 relative group bg-black mt-1">
+                        <img src="${proofUrl}" alt="Nota ${exp.name}" class="w-full h-full object-cover opacity-60 group-hover:opacity-80 transition-opacity">
+                        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 bg-black/40 transition-opacity">
+                            <span class="text-[8px] font-black uppercase tracking-widest text-white bg-black/60 px-2 py-1 rounded-md border border-white/10">Perbesar Gambar ↗</span>
+                        </div>
+                    </a>
+                    ` : '';
+
+                expBox.innerHTML = `
+                    <div class="overflow-hidden flex flex-col gap-1">
+                        <div class="flex items-center justify-between gap-2">
+                            <div class="flex items-center gap-2 overflow-hidden">
+                                ${sectorBadge}
+                                <p class="font-black text-white truncate capitalize tracking-wide">${exp.name}</p>
+                            </div>
+                            <span class="text-[9px] text-gray-500 font-medium shrink-0">${dateString}</span>
+                        </div>
+                        <p class="text-red-400 font-bold text-sm">
+                            - Rp ${amount.toLocaleString('id-ID')}
+                        </p>
+                    </div>
+                    ${embeddedProofHtml}
+                `;
+                expensesContainer.appendChild(expBox);
+
+                if (sector === 'humanity' && proofUrl) {
+                    proofCount++;
+                    const proofBox = document.createElement('div');
+                    proofBox.className = "bg-[#070708] border border-white/[0.04] p-3 rounded-2xl flex flex-col gap-2.5 animate-fadeIn";
+                    proofBox.innerHTML = `
+                        <div class="flex justify-between items-start gap-2">
+                            <div>
+                                <p class="font-black text-xs text-white capitalize truncate max-w-[180px]">${exp.name}</p>
+                                <p class="text-[10px] text-indigo-400 font-bold mt-0.5">Rp ${amount.toLocaleString('id-ID')}</p>
+                            </div>
+                            <span class="text-[8px] font-bold text-gray-500 bg-white/5 border border-white/5 px-2 py-0.5 rounded-md uppercase">${shortDate}</span>
+                        </div>
+                        <a href="${proofUrl}" target="_blank" class="block w-full h-32 rounded-xl overflow-hidden border border-white/5 relative group bg-black">
+                            <img src="${proofUrl}" alt="${exp.name}" class="w-full h-full object-cover opacity-70 group-hover:opacity-90 transition-opacity">
+                            <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 bg-black/40 transition-opacity">
+                                <span class="text-[9px] font-black uppercase tracking-widest text-white bg-black/60 px-3 py-1.5 rounded-lg border border-white/10">Buka Gambar Penuh ↗</span>
+                            </div>
+                        </a>
+                    `;
+                    proofsContainer.appendChild(proofBox);
+                }
+            });
+
+            if(proofCount === 0) {
+                proofsContainer.innerHTML = `<p class="text-xs text-gray-500 text-center py-8">Belum ada nota/bukti penyaluran terupload.</p>`;
+            }
+        }
+
+
+        function renderDonationsList() {
+            const listContainer = document.getElementById('donors-list');
+            const countBadge = document.getElementById('donors-count');
+            const totalFundsDisplay = document.getElementById('total-funds-amount'); // Mengambil elemen total dana baru
+            if(!listContainer) return;
+            listContainer.innerHTML = '';
+            
+            // Saring murni data khusus uang masuk ('in' atau data lama tanpa field type)
+            let filteredData = cachedDonations.filter(donor => {
+                if (donor.type && donor.type !== 'in') return false; 
+                if (!donor.timestamp) return false;
+                
+                const d = donor.timestamp.toDate();
+                const matchesYear = d.getFullYear() === activeFilterYear;
+                const matchesMonth = (activeFilterMonth === null) || (d.getMonth() === activeFilterMonth);
+                
+                return matchesYear && matchesMonth;
+            });
+
+            // HITUNG AKUMULASI TOTAL DANA MASUK SAJA
+            let totalDanaMasuk = filteredData.reduce((sum, donor) => {
+                return sum + (parseInt(donor.amount) || 0);
+            }, 0);
+
+            // Tampilkan hasil kalkulasi dana ke UI
+            if (totalFundsDisplay) {
+                totalFundsDisplay.innerText = 'Rp ' + totalDanaMasuk.toLocaleString('id-ID');
+            }
+            if (countBadge) {
+                countBadge.innerText = `${filteredData.length} Sesi`;
+            }
+
+            if (filteredData.length === 0) {
+                listContainer.innerHTML = `<p class="text-xs text-gray-500 text-center py-8">Tidak ada riwayat donasi pada periode ini.</p>`;
+                return;
+            }
+
+            filteredData.forEach((donor) => {
+                const amount = parseInt(donor.amount) || 0;
+                const appShare = Math.floor(amount * 0.5);
+                const charityShare = amount - appShare;
+
+                let dateDisplay = "Baru saja";
+                if (donor.timestamp) {
+                    const dateObj = donor.timestamp.toDate();
+                    const today = new Date();
+                    const yesterday = new Date();
+                    yesterday.setDate(today.getDate() - 1);
+
+                    if (dateObj.toDateString() === today.toDateString()) {
+                        dateDisplay = "Hari ini";
+                    } else if (dateObj.toDateString() === yesterday.toDateString()) {
+                        dateDisplay = "Kemarin";
+                    } else {
+                        dateDisplay = dateObj.toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' });
+                    }
+                }
+
+                const donorItem = document.createElement('div');
+                donorItem.className = "bg-[#070708] border border-white/[0.06] rounded-2xl p-4 flex flex-col gap-3 transition-all hover:border-purple-500/20 animate-fadeIn";
+                donorItem.innerHTML = `
+                    <div class="flex items-start justify-between gap-2">
+                        <div class="text-sm leading-relaxed">
+                            <span class="font-black text-white capitalize tracking-wide">${donor.name}</span>
+                            <span class="text-gray-400"> mendonasikan sebesar </span>
+                            <span class="font-black text-purple-400 text-base block sm:inline mt-0.5 sm:mt-0">Rp ${amount.toLocaleString('id-ID')}</span>
+                        </div>
+                        <span class="text-[10px] font-bold text-gray-500 uppercase tracking-wider whitespace-nowrap bg-white/[0.02] border border-white/[0.03] px-2 py-1 rounded-lg">${dateDisplay}</span>
+                    </div>
+                    <div class="grid grid-cols-2 gap-2 text-xs border-t border-white/[0.03] pt-3 text-gray-400 font-semibold">
+                        <div class="bg-[#0f0f12] px-3 py-2 rounded-xl border border-white/[0.02]">
+                            <span class="block text-[9px] text-gray-500 uppercase font-bold tracking-widest mb-0.5">Infrastruktur (50%)</span>
+                            <span class="text-gray-200 font-mono">Rp ${appShare.toLocaleString('id-ID')}</span>
+                        </div>
+                        <div class="bg-[#0f0f12] px-3 py-2 rounded-xl border border-purple-500/5">
+                            <span class="block text-[9px] text-purple-400/50 uppercase font-bold tracking-widest mb-0.5">Kemanusiaan (50%)</span>
+                            <span class="text-purple-400 font-mono font-bold">Rp ${charityShare.toLocaleString('id-ID')}</span>
+                        </div>
+                    </div>
+                `;
+                listContainer.appendChild(donorItem);
+            });
+        }
+
+        function listenToDonations() {
+            buildMonthFilterUI();
+            updateIndicatorText();
+            
+            const q = query(collection(db, "donations"), orderBy("timestamp", "desc"));
+            onSnapshot(q, (snapshot) => {
+                const topDonorsContainer = document.getElementById('top-donors-list');
+                cachedDonations = [];
+                let monthlyDonorsArray = [];
+
+                const currentToday = new Date();
+                const currentMonth = currentToday.getMonth();
+                const currentYear = currentToday.getFullYear();
+
+                if(document.getElementById('current-month-badge')) {
+                    document.getElementById('current-month-badge').innerText = monthNamesFull[currentMonth];
+                }
+
+                if (snapshot.empty) {
+                    if(document.getElementById('donors-list')) {
+                        document.getElementById('donors-list').innerHTML = `<p class="text-sm text-gray-500 text-center py-6">Belum ada donasi terkumpul.</p>`;
+                    }
+                    if(topDonorsContainer) {
+                        topDonorsContainer.innerHTML = `<p class="text-xs text-gray-500 text-center py-2">Belum ada peringkat bulan ini.</p>`;
+                    }
+                    document.getElementById('expenses-list').innerHTML = `<p class="text-xs text-gray-500 text-center py-8">Belum ada catatan pengeluaran dana.</p>`;
+                    document.getElementById('proof-gallery-list').innerHTML = `<p class="text-xs text-gray-500 text-center py-8">Belum ada nota/bukti penyaluran terupload.</p>`;
+                    return;
+                }
+
+                snapshot.forEach((doc) => {
+                    const donor = doc.data();
+                    cachedDonations.push(donor);
+                    
+                    if (donor.timestamp && (!donor.type || donor.type === 'in')) {
+                        const donorDate = donor.timestamp.toDate();
+                        if (donorDate.getMonth() === currentMonth && donorDate.getFullYear() === currentYear) {
+                            monthlyDonorsArray.push({ name: donor.name, amount: parseInt(donor.amount) || 0 });
+                        }
+                    }
+                });
+
+                renderDonationsList();
+                renderExpensesAndProofs();
+
+                const groupedDonors = {};
+                monthlyDonorsArray.forEach(item => {
+                    const lowerName = item.name.toLowerCase().trim();
+                    if (groupedDonors[lowerName]) {
+                        groupedDonors[lowerName].amount += item.amount;
+                    } else {
+                        groupedDonors[lowerName] = { name: item.name, amount: item.amount };
+                    }
+                });
+
+                const sortedTopDonors = Object.values(groupedDonors).sort((a, b) => b.amount - a.amount).slice(0, 5);
+                if(topDonorsContainer) {
+                    topDonorsContainer.innerHTML = '';
+                    
+                    if (sortedTopDonors.length === 0) {
+                        topDonorsContainer.innerHTML = `<p class="text-xs text-gray-500 text-center py-8">Belum ada peringkat untuk bulan ini.</p>`;
+                        return;
+                    }
+
+                    const badges = {
+                        1: { bg: "bg-amber-400/10 text-amber-400 border-amber-400/20", icon: "👑" },
+                        2: { bg: "bg-slate-300/10 text-slate-300 border-slate-300/20", icon: "🥈" },
+                        3: { bg: "bg-amber-700/10 text-amber-600 border-amber-700/20", icon: "🥉" },
+                        default: { bg: "bg-white/5 text-gray-400 border-white/[0.05]", icon: "" }
+                    };
+
+                    sortedTopDonors.forEach((donor, index) => {
+                        const rank = index + 1;
+                        const currentBadge = badges[rank] || badges.default;
+                        const topItem = document.createElement('div');
+                        topItem.className = "flex items-center justify-between p-2.5 rounded-xl border border-white/[0.02] bg-white/[0.01]";
+                        topItem.innerHTML = `
+                            <div class="flex items-center gap-2.5 overflow-hidden">
+                                <span class="w-6 h-6 flex items-center justify-center font-black text-[10px] rounded-lg border ${currentBadge.bg} shrink-0">
+                                    ${currentBadge.icon ? currentBadge.icon : rank}
+                                </span>
+                                <span class="text-xs font-bold text-gray-200 truncate capitalize tracking-wide">${donor.name}</span>
+                            </div>
+                            <span class="text-xs font-black text-purple-400 tracking-tight shrink-0">
+                                Rp ${donor.amount.toLocaleString('id-ID')}
+                            </span>
+                        `;
+                        topDonorsContainer.appendChild(topItem);
+                    });
+                }
+
+            }, (error) => {
+                console.error("Gagal memuat data Firebase: ", error);
+            });
+        }
+
+        document.addEventListener("DOMContentLoaded", listenToDonations);
+    </script>
+
+    <script>
+        let selectedFinalAmount = 0;
+        const BASE_QRIS_STRING = "00020101021126570011ID.DANA.WWW011893600915300000493102090000049310303UMI51440014ID.CO.QRIS.WWW0215ID10254588775090303UMI5204549953033605802ID5910Toko Sinar6015Kabupaten Banyu6105531956304D1F0"; 
+
+        function openDashboardModal() {
+            const modal = document.getElementById('dashboard-modal');
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                modal.querySelector('.transform').classList.remove('scale-95');
+            }, 10);
+        }
+
+        function closeDashboardModal() {
+            const modal = document.getElementById('dashboard-modal');
+            modal.classList.add('opacity-0');
+            modal.querySelector('.transform').classList.add('scale-95');
+            setTimeout(() => { modal.classList.add('hidden'); }, 300);
+        }
+
+        function selectAmount(amount, element) {
+            document.querySelectorAll('.preset-btn').forEach(btn => {
+                btn.classList.remove('border-purple-500/80', 'bg-[#13131a]');
+                btn.classList.add('border-white/[0.05]', 'bg-[#070708]');
+            });
+            document.getElementById('custom-amount').value = '';
+            element.classList.remove('border-white/[0.05]', 'bg-[#070708]');
+            element.classList.add('border-purple-500/80', 'bg-[#13131a]');
+            selectedFinalAmount = amount;
+            updateBreakdown(amount);
+            validateForm();
+        }
+
+        function handleCustomInput(input) {
+            document.querySelectorAll('.preset-btn').forEach(btn => {
+                btn.classList.remove('border-purple-500/80', 'bg-[#13131a]');
+                btn.classList.add('border-white/[0.05]', 'bg-[#070708]');
+            });
+            const val = parseInt(input.value) || 0;
+            selectedFinalAmount = val;
+            updateBreakdown(val);
+            validateForm();
+        }
+
+        function updateBreakdown(amount) {
+            const breakdownBox = document.getElementById('breakdown-box');
+            if (amount >= 1000) {
+                const appShare = Math.floor(amount * 0.5);
+                const charityShare = amount - appShare;
+                document.getElementById('app-share').innerText = 'Rp ' + appShare.toLocaleString('id-ID');
+                document.getElementById('charity-share').innerText = 'Rp ' + charityShare.toLocaleString('id-ID');
+                breakdownBox.classList.remove('hidden');
+            } else {
+                breakdownBox.classList.add('hidden');
+            }
+        }
+
+        function validateForm() {
+            const nameVal = document.getElementById('donor-name').value.trim();
+            const submitBtn = document.getElementById('submit-btn');
+            if (nameVal !== '' && selectedFinalAmount >= 1000) {
+                submitBtn.removeAttribute('disabled');
+            } else {
+                submitBtn.setAttribute('disabled', 'true');
+            }
+        }
+
+        function makeCRC16(str) {
+            let crc = 0xFFFF;
+            for (let c = 0; c < str.length; c++) {
+                let cls = str.charCodeAt(c);
+                crc ^= (cls << 8);
+                for (let i = 0; i < 8; i++) {
+                    if ((crc & 0x8000) !== 0) crc = (crc << 1) ^ 0x1021;
+                    else crc = (crc << 1);
+                }
+            }
+            crc &= 0xFFFF;
+            return crc.toString(16).toUpperCase().padStart(4, '0');
+        }
+
+        function generateDynamicQris(rawPayload, amount) {
+            let corePayload = rawPayload.slice(0, -8).replace("010211", "010212");
+            const amountStr = amount.toString();
+            const amountTag = `54${amountStr.length.toString().padStart(2, '0')}${amountStr}`;
+            let modifiedPayload = corePayload.includes("5802ID") ? corePayload.replace("5802ID", `${amountTag}5802ID`) + "6304" : corePayload + amountTag + "6304";
+            return modifiedPayload + makeCRC16(modifiedPayload);
+        }
+
+        function openQrisModal() {
+            document.getElementById('modal-total-display').innerText = 'Rp ' + selectedFinalAmount.toLocaleString('id-ID');
+            const finalDynamicPayload = generateDynamicQris(BASE_QRIS_STRING, selectedFinalAmount);
+            document.getElementById('qris-image-display').src = `https://api.qrserver.com/v1/create-qr-code/?size=350x350&data=${encodeURIComponent(finalDynamicPayload)}`;
+            const modal = document.getElementById('qris-modal');
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                modal.querySelector('.transform').classList.remove('scale-95');
+            }, 10);
+        }
+
+        function closeQrisModal() {
+            const modal = document.getElementById('qris-modal');
+            modal.classList.add('opacity-0');
+            modal.querySelector('.transform').classList.add('scale-95');
+            setTimeout(() => { modal.classList.add('hidden'); }, 300);
+        }
+
+        function sendEmailAndShowSuccess() {
+            const nameInput = document.getElementById('donor-name').value.trim();
+            const appShare = Math.floor(selectedFinalAmount * 0.5);
+            const charityShare = selectedFinalAmount - appShare;
+            const formattedTotal = 'Rp ' + selectedFinalAmount.toLocaleString('id-ID');
+
+            document.getElementById('hidden-amount').value = formattedTotal;
+            document.getElementById('hidden-app').value = 'Rp ' + appShare.toLocaleString('id-ID');
+            document.getElementById('hidden-charity').value = 'Rp ' + charityShare.toLocaleString('id-ID');
+            document.getElementById('email-subject').value = `Donasi Baru dari ${nameInput} (${formattedTotal})`;
+
+            const formEndpoint = "https://formspree.io/f/xkolopwn"; 
+            fetch(formEndpoint, {
+                method: 'POST',
+                body: new FormData(document.getElementById('donation-form')),
+                headers: { 'Accept': 'application/json' }
+            }).catch(err => console.log('Background processed.'));
+
+            const qrisModal = document.getElementById('qris-modal');
+            qrisModal.classList.add('opacity-0');
+            
+            setTimeout(() => {
+                qrisModal.classList.add('hidden');
+                document.getElementById('success-name').innerText = nameInput;
+                document.getElementById('success-amount').innerText = formattedTotal;
+                document.getElementById('success-app').innerText = 'Rp ' + appShare.toLocaleString('id-ID');
+                document.getElementById('success-charity').innerText = 'Rp ' + charityShare.toLocaleString('id-ID');
+
+                const successModal = document.getElementById('success-modal');
+                successModal.classList.remove('hidden');
+                setTimeout(() => {
+                    successModal.classList.remove('opacity-0');
+                    successModal.querySelector('.transform').classList.remove('scale-95');
+                }, 10);
+            }, 250);
+        }
+
+        function redirectToIndex() {
+            window.location.href = "index.html";
+        }
+    </script>
+</body>
+</html>
